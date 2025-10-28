@@ -20,6 +20,10 @@
                 background-color: #f4f4f4;
             }
 
+            .conteudo-principal {
+                margin-left: 220px;
+            }
+
             .top-bar {
             background-color: #333; /* Uma cor de fundo escura */
             padding: 8px 30px;
@@ -99,11 +103,52 @@
                 font-weight: bold;
                 text-decoration: none;
             }
-            /*encerramento menu*/
+        
+            .menu-vertical {
+                background-color: #d033d1; /* Um pouco mais escuro que seu top-bar */
+                width: 220px;           /* Largura da barra vertical */
+                height: 100vh;          /* 100% da altura da tela */
+                position: fixed;        /* Fixo na tela, mesmo com scroll */
+                top: 0;
+                left: 0;
+                z-index: 10;            /* Garante que fique acima de outros itens */
+                padding-top: 20px;      /* Um espaço no topo */
+            }
+            
+            .menu-vertical ul {
+                list-style-type: none;
+            }
+
+            .menu-vertical li a {
+                display: block;
+                color: white;
+                padding: 15px 25px;
+                text-decoration: none;
+                font-size: 16px;
+                transition: background-color 0.3s, font-size 0.3s;
+            }
+
+            .menu-vertical li a:hover {
+                background-color: #f4f4f4; /* Usa a cor rosa do seu menu horizontal */
+                font-size: 18px;
+                color: #333;
+            }
+            /*encerramento menu*/  
+
         </style>
 
     </head>
     <body>
+
+        <nav class="menu-vertical">
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Catálogo</a></li>
+                <li><a href="#">Coleções</a></li>
+                <li><a href="#">Entrar em contato</a></li>
+            </ul>
+        </nav>
+        <main class="conteudo-principal">
 
         <!--top bar-->
         <div class="logo-container">
@@ -171,7 +216,7 @@
 
             
         </div>
-
+        </main>
     </body>
 
 </html>
