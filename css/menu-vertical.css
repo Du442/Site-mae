@@ -1,0 +1,53 @@
+            .menu-vertical {
+                background-color: #d033d1; /* Um pouco mais escuro que seu top-bar */
+                width: 220px;           /* Largura da barra vertical */
+                height: 100vh;          /* 100% da altura da tela */
+                position: fixed;        /* Fixo na tela, mesmo com scroll */
+                top: 0;
+                left: 0;
+                z-index: 10;            /* Garante que fique acima de outros itens */
+                padding-top: 20px;      /* Um espaço no topo */
+            }
+            
+            .menu-vertical ul {
+                list-style-type: none;
+            }
+
+            .menu-vertical li a {
+                display: block;
+                color: white;
+                padding: 15px 25px;
+                text-decoration: none;
+                font-size: 16px;
+                transition: background-color 0.3s, font-size 0.3s;
+            }
+
+            .menu-vertical li a:hover {
+                background-color: #f4f4f4; /* Usa a cor rosa do seu menu horizontal */
+                font-size: 18px;
+                color: #333;
+            }
+
+                        /*button inicio*/
+            .btn-menu-toggle {
+                background-color: #333;
+                border: none;
+                padding: 15px;
+                cursor: pointer;
+                
+                /* Posição Fixa no Canto */
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                z-index: 20; /* Mais alto que o menu, para ser sempre clicável */
+                border-radius: 5px;
+            }
+
+             .btn-menu-toggle .linha {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                margin: 5px 0;
+                transition: all 0.3s;
+            } /*button final*/

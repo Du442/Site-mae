@@ -21,6 +21,12 @@
             }
 
             .conteudo-principal {
+                margin-left: 0px;
+                transition: margin-left 0.4s ease;
+                width: 100%;
+            }
+            
+            .conteudo-principal.menu-aberto {
                 margin-left: 220px;
             }
 
@@ -73,11 +79,10 @@
             .nav-links a {
                 color: white;
                 text-decoration: none; /* Remove o sublinhado */
-                font-size: 18px;
+                font-size: 19px;
                 padding: 8px 12px;
                 border-radius: 5px;
-                transition: background-color 0.3s, transform 0.3s; /* Efeito suave na transição */
-                font-size: 19px;
+                transition: background-color 0.3s, font-size 0.3s; /* Efeito suave na transição */
             }
             
             .nav-links a:hover {
@@ -103,16 +108,24 @@
                 font-weight: bold;
                 text-decoration: none;
             }
-        
+            
+            /*menu vertical*/
             .menu-vertical {
                 background-color: #d033d1; /* Um pouco mais escuro que seu top-bar */
-                width: 220px;           /* Largura da barra vertical */
+                width: 0px;           /* Largura da barra vertical */
                 height: 100vh;          /* 100% da altura da tela */
                 position: fixed;        /* Fixo na tela, mesmo com scroll */
                 top: 0;
                 left: 0;
                 z-index: 10;            /* Garante que fique acima de outros itens */
                 padding-top: 20px;      /* Um espaço no topo */
+                overflow-x: hidden;
+                transition: width 0.4s ease;
+            }
+
+            .menu-vertical.menu-aberto{
+                width: 220px;
+
             }
             
             .menu-vertical ul {
@@ -125,22 +138,98 @@
                 padding: 15px 25px;
                 text-decoration: none;
                 font-size: 16px;
-                transition: background-color 0.3s, font-size 0.3s;
+                white-space: nowrap;
+
+                /*define que os links começarão sem conseguir enxergar*/
+                opacity: 0;
+                transform: translateX(-20px);
+
+                /*define a transição de saida*/
+                transition: background-color 0.3s,
+                            font-size 0.3s,
+                            opacity 0.2s ease-out,
+                            transform 0.2s ease-out;
+                            
             }
 
             .menu-vertical li a:hover {
                 background-color: #f4f4f4; /* Usa a cor rosa do seu menu horizontal */
                 font-size: 18px;
+                transform: translateX(0) scale(1.1);
                 color: #333;
             }
+
+            .menu-vertical.menu-aberto li a {
+                opacity: 1;
+                transform: translateX(0);
+                transition-property: opacity, transform;
+                transition-duration: 0.2s;
+                transition-timing-function: ease-in-out;
+            }
+
+            .menu-vertical.menu-aberto li a:hover {
+                background-color: #f4f4f4;
+                font-size: 18px;
+                color: #333;
+                transform: translateX(0) scale(1.08);
+            }
+
+            .menu-vertical.menu-aberto li:nth-child(1) a {
+                transition-delay: 0.1s;
+            }
+
+            .menu-vertical.menu-aberto li:nth-child(2) a {
+                transition-delay: 0.15s;
+            }
+
+            .menu-vertical.menu-aberto li:nth-child(3) a {
+                transition-delay: 0.2s;
+            }
+
+            .menu-vertical.menu-aberto li:nth-child(4) a {
+                transition-delay: 0.25s;
+            }
+
+
+            /*encerramento menu-vertical8*/
+
             /*encerramento menu*/  
 
+            /*button inicio*/
+            .btn-menu-toggle {
+                background-color: #d033d1;
+                border: none;
+                padding: 15px;
+                cursor: pointer;
+                
+                /* Posição Fixa no Canto */
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                z-index: 20; /* Mais alto que o menu, para ser sempre clicável */
+                border-radius: 5px;
+            }
+
+            .btn-menu-toggle .linha {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                margin: 5px 0;
+                transition: all 0.3s;
+            } /*button final*/
         </style>
 
     </head>
     <body>
 
-        <nav class="menu-vertical">
+        <button class="btn-menu-toggle" id="btn-menu-toggle">
+            <span class="linha"></span>
+            <span class="linha"></span>
+            <span class="linha"></span>
+        </button>
+
+        <nav class="menu-vertical" id="menu-vertical">
             <ul>
                 <li><a href="#">Início</a></li>
                 <li><a href="#">Catálogo</a></li>
@@ -148,75 +237,90 @@
                 <li><a href="#">Entrar em contato</a></li>
             </ul>
         </nav>
-        <main class="conteudo-principal">
 
-        <!--top bar-->
-        <div class="logo-container">
-            <a href="paginaPrincipal.html" class="logo-principal">
-                <img src="" alt="Logo marca">
-            </a>
+        <main class="conteudo-principal" id="conteudo-principal">
 
-        </div>
+            <!--top bar-->
+            <div class="logo-container">
+                <a href="paginaPrincipal.html" class="logo-principal">
+                    <img src="" alt="Logo marca">
+                </a>
 
-        <!--Menu-->
-        <div>
+            </div>
 
-            <header>
-                <nav class="menu-navegacao">
-                    <ul class="nav-links">
-                        <li><a href="paginaPrincipal.html">Início</a></li>
-                        <li><a href="#sobre">Sobre</a></li>
-                        <li><a href="#servicos">Serviços</a></li>
-                        <li><a href="#portfolio">Catálogo</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                    </ul>
-                </nav>
-            </header>
+            <!--Menu-->
+            <div>
 
-        </div>
+                <header>
+                    <nav class="menu-navegacao">
+                        <ul class="nav-links">
+                            <li><a href="paginaPrincipal.html">Início</a></li>
+                            <li><a href="#sobre">Sobre</a></li>
+                            <li><a href="#servicos">Serviços</a></li>
+                            <li><a href="#portfolio">Catálogo</a></li>
+                            <li><a href="#contato">Contato</a></li>
+                        </ul>
+                    </nav>
+                </header>
 
-        <!--menu vertical-->
-        <div>
+            </div>
 
-
-
-        </div>
-
-        <!--Banner principal-->
-        <div>
+            <!--menu vertical-->
+            <div>
 
 
 
-        </div>
+            </div>
 
-        <!--Destaque-->
-        <div>
-
-
-
-        </div>
-
-        <!--banner secundario-->
-        <div>
+            <!--Banner principal-->
+            <div>
 
 
 
-        </div>
+            </div>
 
-        <!--Colecoes e/ou categorias-->
-        <div>
-
-
-            
-        </div>
-
-        <!--rodape-->
-        <div>
+            <!--Destaque-->
+            <div>
 
 
-            
-        </div>
+
+            </div>
+
+            <!--banner secundario-->
+            <div>
+
+
+
+            </div>
+
+            <!--Colecoes e/ou categorias-->
+            <div>
+
+
+                
+            </div>
+
+            <!--rodape-->
+            <div>
+
+
+                
+            </div>
         </main>
+    
+    <script>
+
+        const botaoMenu = document.getElementById('btn-menu-toggle');
+        const menu = document.getElementById('menu-vertical');
+        const conteudo = document.getElementById('conteudo-principal');
+
+        botaoMenu.addEventListener('click', function(){
+            menu.classList.toggle('menu-aberto');
+            conteudo.classList.toggle('menu-aberto');
+        });
+
+    </script> 
+    
     </body>
 
 </html>
