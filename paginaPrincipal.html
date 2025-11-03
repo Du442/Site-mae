@@ -24,10 +24,11 @@
                 margin-left: 0px;
                 transition: margin-left 0.2s ease-in;
                 width: 100%;
+                overflow-x: hidden;
             }
             
             .conteudo-principal.menu-aberto {
-                margin-left: 220px;
+                margin-left: 300px;
             }
 
             .top-bar {
@@ -63,8 +64,8 @@
             }
 
             .logo-principal img {
-                max-width: 250px;
-                height: auto;
+                max-width: 70px;
+                height: 70px;
             }
             /*fim logo*/
 
@@ -153,14 +154,6 @@
                             transform 0.2s ease-out;
                             
             }
-
-            .menu-vertical li a:hover {
-                background-color: #f4f4f4; /* Usa a cor rosa do seu menu horizontal */
-                font-size: 18px;
-                transform: translateX(0) scale(1.1);
-                color: #333;
-            }
-
             .menu-vertical.menu-aberto li a {
                 opacity: 1;
                 transform: translateX(0);
@@ -199,11 +192,14 @@
             .nav-links .nav-icon {
                 width: 30px;
                 height: 30px;
-                display: block;
+                display: none;
             }
 
-            .nav-links .nav-icon {
+            .nav-logo{
+                width: auto;
+                height: auto;
                 display: none;
+
             }
 
             .nav-links .nav-text {
@@ -218,8 +214,8 @@
             }
 
             .conteudo-principal.menu-aberto .nav-links {
-                transform: translateX(500px);
-                opacity: 0.4s;
+                transform: translateX(340px);
+                opacity: 0.75;
             }
 
             /*encerramento menu*/  
@@ -285,7 +281,7 @@
             <!--top bar-->
             <div class="logo-container">
                 <a href="paginaPrincipal.html" class="logo-principal">
-                    <img src="" alt="Logo marca">
+                    <img class="nav-icon" src="img/logo2.png" alt="Logo marca">
                 </a>
 
             </div>
@@ -297,22 +293,22 @@
                     <nav class="menu-navegacao">
                         <ul class="nav-links">
                             <li><a href="paginaPrincipal.html" title="Inicio">
-                                <img src="img/logo home.png" alt="Inicio">
+                                <img class="nav-icon" src="img/logo home.png" alt="Inicio">
                                 <span class="nav-text">Início</span>
                             </a>
                         </li>
-                            <li><a href="#" title="Pesquisar">
-                                <img src="#" alt="Icone lupa">
+                        <li><a href="#" title="Pesquisar">
+                                <img class="nav-icon" src="img/logo lupa.png" alt="Icone lupa">
                                 <span class="nav-text">Pesquisar</span>
                             </a>
                         </li>
-                            <li><a href="telaCadastro.html" title="Cadastro">
-                                <img src="#" alt="Icone cadastro">
+                        <li><a href="telaCadastro.html" title="Cadastro">
+                                <img class="nav-icon" src="img/logo cadastro.png" alt="Icone cadastro">
                                 <span class="nav-text">Cadastro</span>
                             </a>
                         </li>
-                            <li><a href="telaCarrinho.html" title="Carrinho">
-                                <img src="#" alt="Icone carrinho">
+                        <li><a href="telaCarrinho.html" title="Carrinho">
+                                <img class="nav-icon" src="img/logo carrinho.png" alt="Icone carrinho">
                                 <span class="nav-text">Carrinho</span>
                             </a>
                         </li>
