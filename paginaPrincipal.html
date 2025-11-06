@@ -7,6 +7,15 @@
         <title>Vipstyle Fitness</title>
         <link rel="stylesheet" href="css/style.css">
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Momo+Trust+Sans:wght@200..800&display=swap" rel="stylesheet">
+
         <style>
             *{
                 margin: 0;
@@ -16,8 +25,40 @@
 
 
             body {
-                font-family: Arial, sans-serif;
+                font-family: "Momo Trust Sans", Arial, sans-serif;
                 background-color: #f4f4f4;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            /*animação de entrada*/
+            @keyframes animar-entrada {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                } to{
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .cabecalho-principal, .conteudo-principal, .carousel-container, .rodape-site {
+                opacity: 0;
+                animation-name: animar-entrada;
+                animation-duration: 0.7s;
+                animation-timing-function: ease-out;
+                animation-fill-mode: forwards;
+            }
+
+            .carousel-container{
+                animation-delay: 0.2s;
+            }
+            .conteudo-principal{
+                animation-delay: 0.4s;
+            }
+            .rodape-site{
+                animation-delay: 0.6s;
             }
 
             .conteudo-principal {
@@ -25,6 +66,7 @@
                 transition: margin-left 0.2s ease-in;
                 width: 100%;
                 overflow-x: hidden;
+                flex-grow: 1;
             }
             
             .conteudo-principal.menu-aberto {
@@ -65,16 +107,40 @@
 
             .logo-principal img {
                 max-width: 70px;
-                height: 70px;
+                height: auto;
             }
             /*fim logo*/
 
             /*Barra de navegação*/
+            .cabecalho-principal {
+                position: sticky;
+                top: 0;
+                width: 100%;
+                z-index: 5;
+                background-color: #d033d1;
+            }
+
+            .logo-container, .menu-navegacao, .logo-principal img, .nav-links a {
+                transition: all 0.3s ease-out;
+            }
+
+            .header-pequeno .logo-container{
+                padding: 10px 0;
+            }
+            .header-pequeno .logo-principal img{
+                max-width: 50px;
+            }.header-pequeno .menu-navegacao{
+                padding: 10px 30px;
+            }
+            .header-pequeno .nav-links a {
+                font-size: 16px;
+                padding: 5px 10px;
+            }
+            
             .nav-links {
                 list-style: none; /* Remove as bolinhas da lista */
                 display: flex; /* Alinha os itens da lista lado a lado */
                 justify-content: center;
-                transition: transform 0.3s ease-out, opacity 0.3s ease-out;
             }
             .nav-links li {
                 margin-left: 20px; /* Espaçamento entre os botões */
@@ -87,8 +153,8 @@
                 border-radius: 5px;
                 transition: background-color 0.3s, font-size 0.3s; /* Efeito suave na transição */
             }
-            
-            .nav-links a:hover {
+
+            .nav-links a:hover{
                 background-color: #555;
                 font-size: 19.5px;
             }
@@ -188,38 +254,6 @@
 
             /*encerramento menu-vertical8*/
 
-            /*CSS para trocar texto por icone*/
-            .nav-links .nav-icon {
-                width: 30px;
-                height: 30px;
-                display: none;
-            }
-
-            .nav-logo{
-                width: auto;
-                height: auto;
-                display: none;
-
-            }
-
-            .nav-links .nav-text {
-                display: inline;
-            }
-
-            .conteudo-principal.menu-aberto .nav-links .nav-icon {
-                display: block;
-            }
-            .conteudo-principal.menu-aberto .nav-links .nav-text {
-                display: none;
-            }
-
-            .conteudo-principal.menu-aberto .nav-links {
-                transform: translateX(340px);
-                opacity: 0.75;
-            }
-
-            /*encerramento menu*/  
-
             /*button inicio*/
             .btn-menu-toggle {
                 background-color: #d033d1;
@@ -256,11 +290,188 @@
                 transform: translateY(-8px) rotate(-45deg);
             }
             /*button final*/
+
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #000000;
+                opacity: 0;
+                visibility: hidden;
+                z-index: 9;
+                transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+            }
+
+            .menu-overlay.menu-aberto {
+                opacity: 0.6;
+                visibility: visible;
+            }
+
+            /*rodape*/
+            .rodape-site {
+                background-color: #d033d1; /* Um cinza bem escuro */
+                color: #ccc; /* Texto cinza claro */
+                padding-top: 40px; /* Espaçamento interno no topo */
+                margin-top: 50px; /* Espaço entre o último conteúdo e o rodapé */
+            }
+
+            /* 2. Alinha as colunas usando Flexbox */
+            .rodape-container {
+                display: flex;
+                flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+                justify-content: space-around; /* Espaça as colunas */
+                max-width: 1200px; /* Largura máxima do conteúdo do rodapé */
+                margin: 0 auto; /* Centraliza o container */
+                padding: 0 20px; /* Espaçamento lateral */
+            }
+
+            /* 3. Estilo de cada coluna */
+            .rodape-coluna {
+                width: 250px; /* Largura base de cada coluna */
+                margin-bottom: 20px;
+            }
+
+            .rodape-coluna h3 {
+                color: white;
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .rodape-coluna h4 {
+                color: #f4f4f4;
+                font-size: 16px;
+                margin-bottom: 15px;
+                border-bottom: 1px solid #ffffff;
+                padding-bottom: 5px;
+            }
+
+            /* 4. Lista de links rápidos */
+            .rodape-coluna ul {
+                list-style-type: none; /* Remove bolinhas */
+            }
+
+            .rodape-coluna li {
+                margin-bottom: 10px;
+            }
+
+            .rodape-coluna a {
+                color: #ccc;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .rodape-coluna a:hover {
+                color: #d033d1; /* Usa a cor rosa do seu site! */
+                text-decoration: underline;
+            }
+
+            /* 5. Ícones de redes sociais */
+            .redes-sociais a {
+                display: inline-block;
+                margin-right: 15px;
+            }
+
+            .redes-sociais img {
+                width: 24px;
+                height: 24px;
+                transition: transform 0.3s;
+            }
+
+            .redes-sociais img:hover {
+                transform: scale(1.1);
+            }
+
+            /* 6. Barra de copyright (no final) */
+            .rodape-copyright {
+                background-color: #d033d1; /* Mais escuro ainda */
+                text-align: center;
+                padding: 15px 0;
+                margin-top: 20px;
+                font-size: 12px;
+                color: #f4f4f4;
+            }
+
+            /*carrosel*/
+            .carousel-container {
+                position: relative; /* Base para os slides flutuarem */
+                width: 100%;
+                height: 600px; /* Defina a altura do seu banner */
+                overflow: hidden; /* Corta os slides que estão "fora" */
+                background-color: #333; /* Cor de fundo enquanto as imagens carregam */
+            }
+
+            .carousel-slide {
+                position: absolute; /* Coloca um slide em cima do outro */
+                width: 100%;
+                height: 100%;
+                
+                /* Imagem de fundo */
+                background-size: cover;
+                background-position: center;
+
+                /* Animação */
+                opacity: 0; /* Começa invisível */
+                animation: fade-in-out 15s infinite; /* 15s de duração, 3 slides = 5s por slide */
+            }
+
+            .carousel-slide:nth-child(2) {
+                animation-delay: 5s;
+            }
+
+            .carousel-slide:nth-child(3) {
+                animation-delay: 10s;
+            }
+
+            @keyframes fade-in-out {
+                0%   { opacity: 0; } /* Começa invisível */
+                10%  { opacity: 1; } /* Entra (Fade in) */
+                33%  { opacity: 1; } /* Fica visível */
+                43%  { opacity: 0; } /* Sai (Fade out) */
+                100% { opacity: 0; } /* Fica invisível até o próximo ciclo */
+            }
+
+            .slide-content {
+                position: absolute;
+                left: 50%;
+                color: white;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para legibilidade */
+                top: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                width: 90%;
+                max-width: 600px;
+            }
+
+            .slide-content h2 {
+                font-size: 36px;
+                margin-bottom: 10px;
+            }
+
+            .btn-carousel {
+                display: inline-block;
+                background-color: #d033d1; /* Cor do seu site */
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                font-weight: bold;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+
+            .btn-carousel:hover {
+                background-color: white;
+                color: #d033d1;
+            }
+            /*fim carrosel*/
+
         </style>
 
     </head>
     <body>
 
+        <div class="menu-overlay" id="menu-overlay"></div>
         <button class="btn-menu-toggle" id="btn-menu-toggle">
             <span class="linha"></span>
             <span class="linha"></span>
@@ -276,105 +487,116 @@
             </ul>
         </nav>
 
+        
+       <header class="cabecalho-principal" id="cabecalho-principal">
+        
+        <div class="logo-container">
+            <a href="paginaPrincipal.html" class="logo-principal">
+                <img src="img/logo2.png" alt="Logo marca">
+            </a>
+        </div>
+
+        <nav class="menu-navegacao">
+            <ul class="nav-links">
+                <li><a href="paginaPrincipal.html" title="Inicio">Início</a></li>
+                <li><a href="#" title="Pesquisar">Pesquisar</a></li>
+                <li><a href="telaCadastro.html" title="Cadastro">Cadastro</a></li>
+                <li><a href="telaCarrinho.html" title="Carrinho">Carrinho</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <div class="carousel-container">
+
+        <div class="carousel-slide" style="background-image: url('https://via.placeholder.com/1200x400/d033d1/FFFFFF?text=Banner+Promocional+1');">
+            <div class="slide-content">
+                <h2>Novidade da Semana</h2>
+                <a href="#" class="btn-carousel">Veja Agora</a>
+            </div>
+        </div>
+
+        <div class="carousel-slide" style="background-image: url('https://via.placeholder.com/1200x400/555555/FFFFFF?text=Coleção+Fitness+2');">
+            <div class="slide-content">
+                <h2>Coleção Fitness</h2>
+                <a href="#" class="btn-carousel">Descubra</a>
+            </div>
+        </div>
+
+        <div class="carousel-slide" style="background-image: url('https://via.placeholder.com/1200x400/333333/FFFFFF?text=Queima+de+Estoque+3');">
+            <div class="slide-content">
+                <h2>Queima de Estoque</h2>
+                <a href="#" class="btn-carousel">Compre Já</a>
+            </div>
+        </div>
+        
+    </div>
+
         <main class="conteudo-principal" id="conteudo-principal">
 
-            <!--top bar-->
-            <div class="logo-container">
-                <a href="paginaPrincipal.html" class="logo-principal">
-                    <img class="nav-icon" src="img/logo2.png" alt="Logo marca">
-                </a>
-
+            <div class="conteudo-wrapper">
+            
+            </main> <footer class="rodape-site">
+            <div class="rodape-container">
+                <div class="rodape-coluna">
+                    <h3>Vipstyle Fitness</h3>
+                    <p>Moda e estilo para seu treino. Encontre os melhores looks e acessórios.</p>
+                </div>
+                <div class="rodape-coluna">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">FAQ / Ajuda</a></li>
+                    </ul>
+                </div>
+                <div class="rodape-coluna">
+                    <h4>Siga-nos</h4>
+                    <div class="redes-sociais">
+                        <a href="#" title="Instagram"><img src="img/logo-instagram.png" alt="Instagram"></a>
+                        <a href="#" title="Facebook"><img src="img/logo-facebook.png" alt="Facebook"></a>
+                        <a href="#" title="TikTok"><img src="img/logo-tiktok.png" alt="TikTok"></a>
+                    </div>
+                </div>
             </div>
-
-            <!--Menu-->
-            <div>
-
-                <header>
-                    <nav class="menu-navegacao">
-                        <ul class="nav-links">
-                            <li><a href="paginaPrincipal.html" title="Inicio">
-                                <img class="nav-icon" src="img/logo home.png" alt="Inicio">
-                                <span class="nav-text">Início</span>
-                            </a>
-                        </li>
-                        <li><a href="#" title="Pesquisar">
-                                <img class="nav-icon" src="img/logo lupa.png" alt="Icone lupa">
-                                <span class="nav-text">Pesquisar</span>
-                            </a>
-                        </li>
-                        <li><a href="telaCadastro.html" title="Cadastro">
-                                <img class="nav-icon" src="img/logo cadastro.png" alt="Icone cadastro">
-                                <span class="nav-text">Cadastro</span>
-                            </a>
-                        </li>
-                        <li><a href="telaCarrinho.html" title="Carrinho">
-                                <img class="nav-icon" src="img/logo carrinho.png" alt="Icone carrinho">
-                                <span class="nav-text">Carrinho</span>
-                            </a>
-                        </li>
-                        </ul>
-                    </nav>
-                </header>
-
+            <div class="rodape-copyright">
+                <p>&copy; 2025 Vipstyle Fitness. Todos os direitos reservados.</p>
             </div>
-
-            <!--menu vertical-->
-            <div>
+        </footer>
 
 
+        <script>
 
-            </div>
+            const botaoMenu = document.getElementById('btn-menu-toggle');
+            const menu = document.getElementById('menu-vertical');
+            const conteudo = document.getElementById('conteudo-principal');
+            const overlay = document.getElementById('menu-overlay');
 
-            <!--Banner principal-->
-            <div>
+            function toggleMenu() {
+                menu.classList.toggle('menu-aberto');
+                conteudo.classList.toggle('menu-aberto');
+                botaoMenu.classList.toggle('menu-aberto');
+                overlay.classList.toggle('menu-aberto');
+            }
 
+            botaoMenu.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
 
+            const headerPrincipal = document.getElementById('cabecalho-principal');
 
-            </div>
+            function handleScroll() {
+                if(window.scrollY > 1) {
+                    headerPrincipal.classList.add('header-pequeno');
+                } else {
+                    headerPrincipal.classList.remove('header-pequeno');
+                }
+            }
 
-            <!--Destaque-->
-            <div>
+            window.addEventListener('scroll', handleScroll);
 
-
-
-            </div>
-
-            <!--banner secundario-->
-            <div>
-
-
-
-            </div>
-
-            <!--Colecoes e/ou categorias-->
-            <div>
-
-
-                
-            </div>
-
-            <!--rodape-->
-            <div>
-
-
-                
-            </div>
-        </main>
-    
-    <script>
-
-        const botaoMenu = document.getElementById('btn-menu-toggle');
-        const menu = document.getElementById('menu-vertical');
-        const conteudo = document.getElementById('conteudo-principal');
-
-        botaoMenu.addEventListener('click', function(){
-            menu.classList.toggle('menu-aberto');
-            conteudo.classList.toggle('menu-aberto');
-            botaoMenu.classList.toggle('menu-aberto');
-        });
-
-    </script> 
-    
+        </script> 
+        
     </body>
 
 </html>
