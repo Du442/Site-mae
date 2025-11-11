@@ -5,7 +5,9 @@
 
         <meta charset="utf-8">
         <title>Vipstyle Fitness</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +45,7 @@
                 }
             }
 
-            .cabecalho-principal, .conteudo-principal, .carousel-container, .rodape-site {
+            .btn-menu-toggle, .cabecalho-principal, .conteudo-principal, .carousel-container, .rodape-site {
                 opacity: 0;
                 animation-name: animar-entrada;
                 animation-duration: 0.7s;
@@ -98,6 +100,8 @@
                 text-decoration: underline;
             }
 
+            /*-----------------------------------------------------------------------------------------*/
+
             /*logo*/
             .logo-container {
             text-align: center; 
@@ -110,6 +114,8 @@
                 height: auto;
             }
             /*fim logo*/
+
+            /*-----------------------------------------------------------------------------------------*/
 
             /*Barra de navegação*/
             .cabecalho-principal {
@@ -161,6 +167,8 @@
 
             /*Fim navbar*/
 
+            /*-----------------------------------------------------------------------------------------*/
+
             /*Menu*/
             .menu-navegacao {
                 display: flex; /* Alinha os itens lado a lado */
@@ -177,6 +185,8 @@
                 font-weight: bold;
                 text-decoration: none;
             }
+
+            /*-----------------------------------------------------------------------------------------*/
             
             /*menu vertical*/
             .menu-vertical {
@@ -254,9 +264,11 @@
 
             /*encerramento menu-vertical8*/
 
+            /*-----------------------------------------------------------------------------------------*/
+
             /*button inicio*/
             .btn-menu-toggle {
-                background-color: #d033d1;
+                background-color: transparent;
                 border: none;
                 padding: 15px;
                 cursor: pointer;
@@ -291,6 +303,9 @@
             }
             /*button final*/
 
+            /*-----------------------------------------------------------------------------------------*/
+
+            /*efeito menu vertical aberto*/
             .menu-overlay {
                 position: fixed;
                 top: 0;
@@ -308,6 +323,8 @@
                 opacity: 0.6;
                 visibility: visible;
             }
+
+            /*-----------------------------------------------------------------------------------------*/
 
             /*rodape*/
             .rodape-site {
@@ -393,6 +410,36 @@
                 color: #f4f4f4;
             }
 
+            .rodape-pagamento {
+                margin-top: 25px;
+                padding-top: 25px;
+                border-top: 1px solid #ffffff;
+            }
+
+            .rodape-pagamento h5 {
+                color: #f4f4f4;
+                font-size: 12px;
+                font-weight: bold;
+                margin-bottom: 15px;
+            }
+
+            .pagamento-icones {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .pagamento-icones img {
+                height: 30px;
+                width: auto;
+                background-color: white;
+                border-radius: 4px;
+                padding: 4px;
+            }
+
+            /*-----------------------------------------------------------------------------------------*/
+
             /*carrosel*/
             .carousel-container {
                 position: relative; /* Base para os slides flutuarem */
@@ -449,53 +496,257 @@
                 margin-bottom: 10px;
             }
 
-            .btn-carousel {
+            .botao-carrosel {
                 display: inline-block;
-                background-color: #d033d1; /* Cor do seu site */
-                color: white;
+                background-color: #d033d1 !important; /* Cor do seu site */
+                color: white !important;
                 padding: 10px 20px;
                 text-decoration: none;
                 font-weight: bold;
                 border-radius: 5px;
-                transition: background-color 0.3s;
-            }
-
-            .btn-carousel:hover {
-                background-color: white;
-                color: #d033d1;
+                border: 1px solid transparent;
+                transition: background-color 0.3s, color 0.3s, border-color 0.3s;
             }
             /*fim carrosel*/
+
+            /*-----------------------------------------------------------------------------------------*/
+
+            /*carrosel produtos*/
+            .product-carousel-section{
+                width: 90%;
+                max-width: 1200px;
+                margin: 40px auto;
+                position: relative;
+            }
+
+            .product-carousel-section h2 {
+                font-size: 28px;
+                color: #333;
+                text-align: center;
+                margin-bottom: 25px;
+            }
+
+            /*-----------------------------------------------------------------------------------------*/
+
+            /*card*/
+            .card-quadrado {
+                display: block;
+                text-decoration: none;
+                color: #333;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+
+            .card-quadrado:hover{
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            }
+
+            .card-quadrado img{
+                width: 100%;
+                display: block;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+            }
+
+            .card-quadrado h3 {
+                font-size: 18px;
+                text-align: center;
+                padding: 15px;
+                background-color: white;
+            }
+
+            .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev{
+                color: #d033d1;
+            }
+
+            .product-carousel .swiper-pagination-bullet-active{
+                background: #d033d1;
+            }
+            /*fim card*/
+
+            /*-----------------------------------------------------------------------------------------*/
+
+            /*seção de categorias em grade*/
+            .secao-categoria{
+                width: 90%;
+                max-width: 1200px;
+                margin: 50px auto;
+                padding: 20px;
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0,05);
+            }
+
+            .linha-categoria {
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            .linha-categoria.titulos {
+                border-bottom: 1px solid #eee;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+            }
+
+            .coluna-categoria {
+                flex-grow: 1;
+                flex-basis: 200px;
+            }
+
+            .coluna-categoria h3{
+                font-size: 18px;
+                color: #111;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .coluna-categoria ul {
+                list-style-type: none;
+                text-align: center;
+            }
+
+            .coluna-categoria li {
+                margin-bottom: 12px;
+            }
+
+            .coluna-categoria a {
+                text-decoration: none;
+                color: #555;
+                font-size: 15px;
+                transition: color 0.3s;
+            }
+
+            .coluna-categoria a:hover{
+                color: #d033d1;
+                text-decoration: underline;
+            }
+            /*seção de categoria em grade final*/
+
+            /*-----------------------------------------------------------------------------------------*/
+
+            /*Seção Produtos em Destaque (Grid Estático)*/
+
+            .destaques {
+                width: 90%;
+                max-width: 1200px;
+                margin: 50px auto;
+                text-align: center;
+            }
+
+            .destaques-carrosel .swiper-button-next,
+            .destaques-carrosel .swiper-button-prev{
+                color: #d033d1;
+            }
+
+            .destaques h2{
+                font-size: 28px;
+                color: #333;
+                text-align: left;
+                margin-bottom: 25px;
+            }
+
+            .card-produto{
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                overflow: hidden;
+                text-decoration: none;
+                color: #333;
+                transition: transform 0.3s, box-shadow 0.3s;
+                height: 100%;
+            }
+
+            .card-produto:hover{
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            }
+
+            .card-produto a{
+                text-decoration: none;
+                color: inherit;
+            }
+
+            .card-produto img{
+                width: 100%;
+                display: block;
+                aspect-ratio: 1/1;
+            }
+
+            .card-produto-info{
+                padding: 15px;
+                text-align: left;
+            }
+
+            .card-produto-info h3{
+                font-size: 16px;
+                font-weight: 500;
+                margin-bottom: 8px;
+            }
+
+            .card-produto-info .reviews{
+                font-size: 14px;
+                color: #888;
+                margin-bottom: 8px;
+            }
+
+            .card-produto-info .preco{
+                font-size: 16px;
+                font-weight: bold;
+                color: #111;
+            }
+
+            .btn-ver-tudo{
+                display: inline-block;
+                background-color: #ffffff;
+                color: #111;
+                border: 1px solid #111;
+                padding: 12px 30px;
+                text-decoration: none;
+                font-weight: bold;
+                border-radius: 5px;
+                margin-top: 30px;
+                transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            }
+
+            .btn-ver-tudo:hover {
+                background-color: #111;
+                color: #ffffff;
+                transform: scale(1.1);
+            }
+
+            /*Seção Produtos em Destaque (Grid Estático) final*/
 
         </style>
 
     </head>
-    <body>
+<body>
 
-        <div class="menu-overlay" id="menu-overlay"></div>
-        <button class="btn-menu-toggle" id="btn-menu-toggle">
-            <span class="linha"></span>
-            <span class="linha"></span>
-            <span class="linha"></span>
-        </button>
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <button class="btn-menu-toggle" id="btn-menu-toggle">
+        <span class="linha"></span>
+        <span class="linha"></span>
+        <span class="linha"></span>
+    </button>
+    <nav class="menu-vertical" id="menu-vertical">
+        <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Catálogo</a></li>
+            <li><a href="#">Coleções</a></li>
+            <li><a href="#">Entrar em contato</a></li>
+        </ul> 
+    </nav>
 
-        <nav class="menu-vertical" id="menu-vertical">
-            <ul>
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Catálogo</a></li>
-                <li><a href="#">Coleções</a></li>
-                <li><a href="#">Entrar em contato</a></li>
-            </ul>
-        </nav>
-
-        
-       <header class="cabecalho-principal" id="cabecalho-principal">
-        
+    
+    <header class="cabecalho-principal" id="cabecalho-principal">
         <div class="logo-container">
             <a href="paginaPrincipal.html" class="logo-principal">
                 <img src="img/logo2.png" alt="Logo marca">
             </a>
         </div>
-
         <nav class="menu-navegacao">
             <ul class="nav-links">
                 <li><a href="paginaPrincipal.html" title="Inicio">Início</a></li>
@@ -504,99 +755,344 @@
                 <li><a href="telaCarrinho.html" title="Carrinho">Carrinho</a></li>
             </ul>
         </nav>
-
     </header>
-
+    
+    
     <div class="carousel-container">
-
         <div class="carousel-slide" style="background-image: url('https://via.placeholder.com/1200x400/d033d1/FFFFFF?text=Banner+Promocional+1');">
             <div class="slide-content">
                 <h2>Novidade da Semana</h2>
-                <a href="#" class="btn-carousel">Veja Agora</a>
+                <a href="#" class="botao-carrosel">Veja agora</a>
             </div>
         </div>
-
         <div class="carousel-slide" style="background-image: url('https://via.placeholder.com/1200x400/555555/FFFFFF?text=Coleção+Fitness+2');">
             <div class="slide-content">
                 <h2>Coleção Fitness</h2>
-                <a href="#" class="btn-carousel">Descubra</a>
+                <a href="#" class="botao-carrosel">Descubra</a>
             </div>
         </div>
-
         <div class="carousel-slide" style="background-image: url('https://via.placeholder.com/1200x400/333333/FFFFFF?text=Queima+de+Estoque+3');">
             <div class="slide-content">
                 <h2>Queima de Estoque</h2>
-                <a href="#" class="btn-carousel">Compre Já</a>
+                <a href="#" class="botao-carrosel">Compre Já</a>
             </div>
         </div>
-        
     </div>
 
-        <main class="conteudo-principal" id="conteudo-principal">
+    
+    <section class="product-carousel-section">
+        <h2>Nossas Coleções</h2>
+        <div class="swiper product-carousel">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#" class="card-quadrado">
+                        <img src="#" alt="produto 1">
+                        <h3>Movimento & Companhia</h3>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="card-quadrado">
+                        <img src="#" alt="produto 2">
+                        <h3>Areia Bronze</h3>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="card-quadrado">
+                        <img src="#" alt="produto 3">
+                        <h3>Corrente Marinha</h3>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="card-quadrado">
+                        <img src="#" alt="produto 4">
+                        <h3>FinaForma</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
 
-            <div class="conteudo-wrapper">
-            
-            </main> <footer class="rodape-site">
-            <div class="rodape-container">
-                <div class="rodape-coluna">
-                    <h3>Vipstyle Fitness</h3>
-                    <p>Moda e estilo para seu treino. Encontre os melhores looks e acessórios.</p>
+    
+    <section class="secao-categorias">
+        <div class="linha-categoria titulos">
+            <div class="coluna-categoria"><h3>Destaques</h3></div>
+            <div class="coluna-categoria"><h3>Feminino</h3></div>
+            <div class="coluna-categoria"><h3>Masculino</h3></div>
+            <div class="coluna-categoria"><h3>n sei</h3></div>
+        </div>
+        <div class="linha-categoria">
+            <div class="coluna-categoria">
+                <ul>
+                    <li><a href="#">Camisetas</a></li>
+                    <li><a href="#">Leggings</a></li>
+                    <li><a href="#">Biquinis</a></li>
+                    <li><a href="#">Teste</a></li>
+                </ul>
+            </div>
+            <div class="coluna-categoria">
+                <ul>
+                    <li><a href="#">Camisetas</a></li>
+                    <li><a href="#">Leggings</a></li>
+                    <li><a href="#">Biquinis</a></li>
+                    <li><a href="#">Teste</a></li>
+                </ul>
+            </div>
+            <div class="coluna-categoria">
+                <ul>
+                    <li><a href="#">Camisetas</a></li>
+                    <li><a href="#">Leggings</a></li>
+                    <li><a href="#">Biquinis</a></li>
+                    <li><a href="#">Teste</a></li>
+                </ul>
+            </div>
+            <div class="coluna-categoria">
+                <ul>
+                    <li><a href="#">Camisetas</a></li>
+                    <li><a href="#">Leggings</a></li>
+                    <li><a href="#">Biquinis</a></li>
+                    <li><a href="#">Teste</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="destaques">
+        <h2>Produtos em destaque</h2>
+        <div class="swiper destaques-carousel">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="card-produto">
+                        <a href="#">
+                            <img src="#" alt="produto 1">
+                            <div class="card-produto-info">
+                                <h3>Produto1</h3>
+                                <div class="reviews">avaliações</div>
+                                <p class="preco">*valor*</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="rodape-coluna">
-                    <h4>Links Úteis</h4>
-                    <ul>
-                        <li><a href="#sobre">Sobre Nós</a></li>
-                        <li><a href="#">Política de Privacidade</a></li>
-                        <li><a href="#">Termos de Uso</a></li>
-                        <li><a href="#">FAQ / Ajuda</a></li>
-                    </ul>
+                <div class="swiper-slide">
+                    <div class="card-produto">
+                        <a href="#">
+                            <img src="#" alt="produto 2">
+                            <div class="card-produto-info">
+                                <h3>Produto2</h3>
+                                <div class="reviews">avaliações</div>
+                                <p class="preco">*valor*</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="rodape-coluna">
-                    <h4>Siga-nos</h4>
-                    <div class="redes-sociais">
-                        <a href="#" title="Instagram"><img src="img/logo-instagram.png" alt="Instagram"></a>
-                        <a href="#" title="Facebook"><img src="img/logo-facebook.png" alt="Facebook"></a>
-                        <a href="#" title="TikTok"><img src="img/logo-tiktok.png" alt="TikTok"></a>
+                <div class="swiper-slide">
+                    <div class="card-produto">
+                        <a href="#">
+                            <img src="#" alt="produto 3">
+                            <div class="card-produto-info">
+                                <h3>Produto3</h3>
+                                <div class="reviews">avaliações</div>
+                                <p class="preco">*valor*</p>
+                            </div>
+                        </a>
+                    </div> 
+                </div>
+                <div class="swiper-slide">
+                    <div class="card-produto">
+                        <a href="#">
+                            <img src="#" alt="produto 4">
+                            <div class="card-produto-info">
+                                <h3>Produto4</h3>
+                                <div class="reviews">avaliações</div>
+                                <p class="preco">*valor*</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card-produto">
+                        <a href="#">
+                            <img src="#" alt="produto 5">
+                            <div class="card-produto-info">
+                                <h3>Produto5</h3>
+                                <div class="reviews">avaliações</div>
+                                <p class="preco">*valor*</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card-produto">
+                        <a href="#">
+                            <img src="#" alt="produto 6">
+                            <div class="card-produto-info">
+                                <h3>Produto6</h3>
+                                <div class="reviews">avaliações</div>
+                                <p class="preco">*valor*</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card-produto">
+                        <a href="#">
+                            <img src="#" alt="produto 7">
+                            <div class="card-produto-info">
+                                <h3>Produto7</h3>
+                                <div class="reviews">avaliações</div>
+                                <p class="preco">*valor*</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card-produto">
+                        <a href="#">
+                            <img src="#" alt="produto 8">
+                            <div class="card-produto-info">
+                                <h3>Produto8</h3>
+                                <div class="reviews">avaliações</div>
+                                <p class="preco">*valor*</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="rodape-copyright">
-                <p>&copy; 2025 Vipstyle Fitness. Todos os direitos reservados.</p>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div> 
+        <a href="#" class="btn-ver-tudo">Ver tudo</a>
+    </section>
+
+    
+    <main class="conteudo-principal" id="conteudo-principal">
+        <div class="conteudo-wrapper">
+            </div> 
+    </main>
+
+    
+    <footer class="rodape-site">
+         <div class="rodape-container">
+            <div class="rodape-coluna">
+                <h3>Vipstyle Fitness</h3>
+                <p>Moda e estilo para seu treino. Encontre os melhores looks e acessórios.</p>
             </div>
-        </footer>
+            <div class="rodape-coluna">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">FAQ / Ajuda</a></li>
+                </ul>
+            </div>
+            <div class="rodape-coluna">
+                <h4>Siga-nos</h4>
+                <div class="redes-sociais">
+                    <a href="#" title="Instagram"><img src="img/logo-instagram.png" alt="Instagram"></a>
+                    <a href="#" title="Facebook"><img src="img/logo-facebook.png" alt="Facebook"></a>
+                    <a href="#" title="TikTok"><img src="img/logo-tiktok.png" alt="TikTok"></a>
+                </div>
+            </div>
+        </div>
+        <div class="rodape-copyright">
+            <div class="rodape-pagamento">
+                <div class="pagamento-icones">
+                    <img src="#" alt="Visa">
+                    <img src="#" alt="MasterCard">
+                    <img src="#" alt="Elo">
+                    <img src="#" alt="Pix">
+                    <img src="#" alt="Boleto">
+                </div>
+            </div>
+            <p>&copy; 2025 Vipstyle Fitness. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
 
-        <script>
+    <script>
+        if(history.scrollRestoration) {
+            history.scrollRestoration = "manual";
+        }
+        window.scrollTo(0,0);
 
-            const botaoMenu = document.getElementById('btn-menu-toggle');
-            const menu = document.getElementById('menu-vertical');
-            const conteudo = document.getElementById('conteudo-principal');
-            const overlay = document.getElementById('menu-overlay');
+        const botaoMenu = document.getElementById('btn-menu-toggle');
+        const menu = document.getElementById('menu-vertical');
+        const conteudo = document.getElementById('conteudo-principal');
+        const overlay = document.getElementById('menu-overlay');
 
-            function toggleMenu() {
-                menu.classList.toggle('menu-aberto');
-                conteudo.classList.toggle('menu-aberto');
-                botaoMenu.classList.toggle('menu-aberto');
-                overlay.classList.toggle('menu-aberto');
+        function toggleMenu() {
+            menu.classList.toggle('menu-aberto');
+            conteudo.classList.toggle('menu-aberto');
+            botaoMenu.classList.toggle('menu-aberto');
+            overlay.classList.toggle('menu-aberto');
+        }
+        botaoMenu.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        const headerPrincipal = document.getElementById('cabecalho-principal');
+        function handleScroll() {
+            if(window.scrollY > 1) {
+                headerPrincipal.classList.add('header-pequeno');
+            } else {
+                headerPrincipal.classList.remove('header-pequeno');
             }
+        }
+        window.addEventListener('scroll', handleScroll);
 
-            botaoMenu.addEventListener('click', toggleMenu);
-            overlay.addEventListener('click', toggleMenu);
-
-            const headerPrincipal = document.getElementById('cabecalho-principal');
-
-            function handleScroll() {
-                if(window.scrollY > 1) {
-                    headerPrincipal.classList.add('header-pequeno');
-                } else {
-                    headerPrincipal.classList.remove('header-pequeno');
-                }
+        const swiper = new Swiper('.product-carousel', { 
+            slidesPerView: 1, 
+            spaceBetween: 20,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: { 
+                el:'.swiper-pagination',
+                clickable: true,
+            },
+            navigation: { 
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: { 
+                640: {
+                    slidesPerView: 1, 
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 1, 
+                    spaceBetween: 30,
+                },
             }
+        });
 
-            window.addEventListener('scroll', handleScroll);
-
-        </script> 
-        
-    </body>
+        const swiperDestaques = new Swiper('.destaques-carousel', { 
+            slidesPerView: 1,
+            slidesPerGroup: 1,
+            spaceBetween: 20,
+            navigation: { // Faltava ':' no seu código antigo
+                nextEl: '.destaques-carousel .swiper-button-next',
+                prevEl: '.destaques-carousel .swiper-button-prev',
+            },
+            breakpoints: { 
+                640: {
+                    slidesPerView: 2,
+                    slidesPerGroup: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    slidesPerGroup: 4,
+                    spaceBetween: 30,
+                },
+            }
+        });
+    </script> 
+    
+</body>
 
 </html>
