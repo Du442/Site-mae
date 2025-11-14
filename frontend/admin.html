@@ -3,29 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <title>Painel de Admin - Vipstyle</title>
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin.css"> 
 </head>
 <body>
     <h1>Painel de Gerenciamento de Produtos</h1>
 
     <form id="form-produto">
-        <input type="hidden" id="produto-id"> <div>
-            <label>Nome:</label>
+        <input type="hidden" id="produto-id">
+        
+        <div>
+            <label for="nome-produto">Nome do Produto:</label>
             <input type="text" id="nome-produto" required>
         </div>
         <div>
-            <label>Preço (ex: 159.90):</label>
+            <label for="preco-produto">Preço (ex: 159.90):</label>
             <input type="number" step="0.01" id="preco-produto" required>
         </div>
         <div>
-            <label>URL da Imagem (ex: img/produto-x.png):</label>
+            <label for="imagem-produto">URL da Imagem (ex: img/produto-novo.png):</label>
             <input type="text" id="imagem-produto" required>
         </div>
         <div>
-            <label>Categoria (ex: 'destaque' ou 'colecao'):</label>
+            <label for="categoria-produto">Categoria (ex: 'destaque' ou 'colecao'):</label>
             <input type="text" id="categoria-produto" required>
         </div>
+
+        <div class="form-group">
+            <label>Descrição:</label>
+            <textarea id="descricao-produto" rows="3" placeholder="Detalhes sobre o tecido, caimento..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Exibir em:</label>
+            <select id="categoria-produto" required>
+                <option value="destaque">Produtos em Destaque</option>
+                <option value="colecao">Nossas Coleções</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Tipo da Peça:</label>
+            <select id="tipo-produto" required>
+                <option value="legging">Legging</option>
+                <option value="top">Top</option>
+                <option value="shorts">Shorts</option>
+                <option value="camiseta">Camiseta</option>
+                <option value="conjunto">Conjunto</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Tamanhos Disponíveis:</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="tamanho" value="P"> P</label>
+                <label><input type="checkbox" name="tamanho" value="M"> M</label>
+                <label><input type="checkbox" name="tamanho" value="G"> G</label>
+                <label><input type="checkbox" name="tamanho" value="GG"> GG</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Cores Disponíveis:</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="cor" value="Preto"> Preto</label>
+                <label><input type="checkbox" name="cor" value="Branco"> Branco</label>
+                <label><input type="checkbox" name="cor" value="Rosa"> Rosa</label>
+                <label><input type="checkbox" name="cor" value="Azul"> Azul</label>
+                <label><input type="checkbox" name="cor" value="Roxo"> Roxo</label>
+                <label><input type="checkbox" name="cor" value="Verde"> Verde</label>
+                <label><input type="checkbox" name="cor" value="Cinza"> Cinza</label>
+            </div>
+        </div>
+        
         <button type="submit">Salvar Produto</button>
+        <button type="button" id="btn-cancelar" style="display: none;">Cancelar Edição</button>
+
+        
     </form>
 
     <hr>
@@ -34,6 +87,6 @@
     <div id="lista-produtos">
         </div>
 
-    <script src="js/admin.js"></script>
+    <script src="javascript/admin.js"></script>
 </body>
 </html>
