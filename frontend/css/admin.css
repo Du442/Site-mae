@@ -1,3 +1,12 @@
+.text-align {
+    text-align: center;
+}
+
+.espaco-produto{
+    padding: 4px;
+   
+}
+
 .checkbox-group {
     display: flex;
     gap: 15px; /* Espaço entre as opções */
@@ -13,4 +22,511 @@
     background: #f0f0f0;
     padding: 5px 10px;
     border-radius: 4px;
+}
+
+.produto-item {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Para telas pequenas */
+}
+
+.produto-item .info-principal {
+    font-size: 18px;
+    margin-bottom: 5px;
+    flex-basis: 100%; /* Ocupa a linha toda */
+}
+
+.produto-item .info-detalhes {
+    font-size: 13px;
+    color: #555;
+    flex-basis: 70%; /* Ocupa 70% da largura */
+}
+
+.produto-item div:last-child {
+    flex-basis: 30%; /* Ocupa 30% da largura */
+    text-align: right;
+}
+
+#form-produto {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.checkbox-group {
+    display: flex; gap: 15px; flex-wrap: wrap; margin-top: 5px;
+}
+.checkbox-group label {
+    display: flex; align-items: center; gap: 5px; cursor: pointer;
+    background: #f0f0f0; padding: 5px 10px; border-radius: 4px; font-weight: normal;
+}
+
+/* --- ★ NOVOS ESTILOS DA TABELA E FILTROS ★ --- */
+
+.container-tabela {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto; /* Centraliza */
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.container-tabela h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* --- Filtros e Pesquisa --- */
+.filtros-tabela {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.filtros-tabela input,
+.filtros-tabela select {
+    width: 50%; /* Cada um ocupa metade */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* --- Tabela de Produtos --- */
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse; /* Tira bordas duplas */
+    font-size: 14px;
+}
+
+.tabela-produtos th,
+.tabela-produtos td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.tabela-produtos th {
+    background-color: #f4f4f4; /* Fundo cinza para o cabeçalho */
+    font-weight: bold;
+}
+
+.tabela-produtos tr:nth-child(even) {
+    background-color: #f9f9f9; /* Linhas zebradas */
+}
+
+/* Coluna de Ações */
+.tabela-produtos .acoes {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.tabela-produtos .acoes button {
+    padding: 5px 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+.tabela-produtos .acoes .btn-editar {
+    background-color: #007bff; /* Azul */
+}
+.tabela-produtos .acoes .btn-remover {
+    background-color: #dc3545; /* Vermelho */
+}
+
+.lista-cores-tabela {
+    display: flex;
+    gap: 4px;
+}
+.cor-quadrado {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.color-picker-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espaço entre os quadradinhos */
+    margin-top: 5px;
+}
+
+.color-option {
+    cursor: pointer;
+    position: relative; /* Parente para o "check" */
+}
+
+
+.color-swatch {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc; 
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.color-option input[type="checkbox"] {
+    display: none;
+}
+
+.color-option input[type="checkbox"]:checked + .color-swatch {
+
+    transform: scale(1.05); 
+    box-shadow: 0 0 0 3px #007bff; 
+}
+
+.lista-cores-tabela {
+    display: flex; /* Alinha os quadradinhos */
+    gap: 4px; /* Espaço entre eles */
+    flex-wrap: wrap; /* Quebra a linha se tiver muitas cores */
+}
+
+.cor-quadrado {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc; /* Borda (essencial para ver a cor "Branco") */
+    border-radius: 4px;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*admin html*/
+
+.admin-container { width: 90%; max-width: 1000px; margin: 0 auto; font-family: sans-serif; }
+.card-admin { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+.row { display: flex; gap: 15px; }
+.form-group { flex: 1; margin-bottom: 15px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+
+/* Botões */
+button { cursor: pointer; padding: 10px 20px; border: none; border-radius: 4px; color: white; font-weight: bold; }
+.btn-save { background-color: #28a745; }
+.btn-add-variant { background-color: #d033d1; width: 100%; }
+#btn-novo { background-color: #6c757d; float: right; }
+
+/* Tabela de Variantes */
+.tabela-variantes { width: 100%; margin-top: 15px; border-collapse: collapse; font-size: 14px; }
+.tabela-variantes th, .tabela-variantes td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+.mini-img { width: 30px; height: 30px; object-fit: cover; border-radius: 4px; }
+.cor-box { display: inline-block; width: 15px; height: 15px; border: 1px solid #ccc; vertical-align: middle; margin-right: 5px;}
+
+/* Lista Geral */
+.produto-item { background: #f8f9fa; padding: 10px; margin-bottom: 5px; border: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }
+.produto-item button { padding: 5px 10px; font-size: 12px; margin-left: 5px; }
+.btn-editar { background-color: #007bff; }
+.btn-remover { background-color: #dc3545; }
+
+.grade-tamanhos {
+    display: flex;
+    gap: 15px; /* Espaço entre os blocos P, M, G... */
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    justify-content: flex-start; 
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.tamanho-item {
+    display: flex;
+    flex-direction: column; /* Coloca a letra EM CIMA do input */
+    align-items: center;    /* Centraliza tudo */
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    
+    /* ★ O SEGREDO: Define um tamanho fixo para o container ★ */
+    width: 70px; 
+}
+
+.tamanho-item span {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #d033d1;
+    margin-bottom: 8px; /* Espaço entre a letra e o campo */
+}
+
+.tamanho-item input {
+    /* ★ O SEGREDO: O input ocupa 100% do container de 70px ★ */
+    width: 100%; 
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    
+    /* Remove setinhas do input number (opcional, fica mais limpo) */
+    -moz-appearance: textfield; 
+}
+
+/* Remove setinhas do input number no Chrome/Safari */
+.tamanho-item input::-webkit-outer-spin-button,
+.tamanho-item input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.card-admin {
+    background: #fff;
+    padding: 30px; /* Mais espaço interno */
+    border-radius: 12px; /* Bordas mais arredondadas */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Sombra suave e moderna */
+    margin-bottom: 30px;
+    border-left: 6px solid #d033d1; /* Sua borda roxa */
+    transition: transform 0.2s;
+}
+
+.card-admin h3 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+/* --- Inputs e Labels --- */
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Arredondado */
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+/* Efeito de Foco (Quando clica no campo) */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #d033d1; /* Cor da marca */
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(208, 51, 209, 0.1); /* Brilho suave roxo */
+}
+
+/* --- Input de Cor (Color Picker) --- */
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    width: 100%;
+    height: 45px;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+/* --- Input de Arquivo (File) --- */
+input[type="file"] {
+    background: #fff;
+    padding: 10px;
+    border: 1px dashed #d033d1;
+    cursor: pointer;
+}
+
+/* --- ★ A GRANDE MELHORIA: Grade de Tamanhos ★ --- */
+.grade-tamanhos {
+    display: flex;
+    gap: 20px; /* Espaço entre as caixinhas */
+    background: #f8f9fa; /* Fundo cinza claro para destacar a área */
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    justify-content: flex-start; /* Alinha à esquerda */
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+}
+
+.tamanho-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    width: 80px; /* Largura fixa para ficarem iguais */
+}
+
+.tamanho-item span {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #d033d1;
+    margin-bottom: 5px;
+}
+
+.tamanho-item input {
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #ddd;
+}
+
+/* --- Botões --- */
+.btn-add-variant {
+    background-color: #d033d1;
+    color: white;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-add-variant:hover {
+    background-color: #a82aa9;
+    transform: translateY(-2px); /* Efeito de "levantar" */
+}
+
+/* --- Tabela de Variantes --- */
+.tabela-variantes {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.tabela-variantes thead {
+    background-color: #333;
+    color: white;
+}
+
+.tabela-variantes th {
+    padding: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.tabela-variantes td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.tabela-variantes tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-variantes tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mini imagem na tabela */
+.mini-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.painel-tabela {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 30px;
+}
+
+.filtros-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filtros-container input,
+.filtros-container select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.filtros-container input {
+    flex-grow: 1; /* A barra de pesquisa ocupa o espaço restante */
+}
+
+/* --- Estilo da Tabela --- */
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-produtos th,
+.tabela-produtos td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.tabela-produtos th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+}
+
+.tabela-produtos tr:hover {
+    background-color: #f1f1f1; /* Efeito ao passar o mouse na linha */
 }

@@ -1,29 +1,27 @@
 package backend.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import backend.backend.model.ProdutoVariante;
+import jakarta.persistence.*;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "produtos")
 public class Produto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String nome;
-    private Double preco;
-    private String urlImagem;
-    private String categoria;
     private String descricao;
     private String tipo;
-    private String tamanhos;
-    private String cores;
-    public Produto() {
-    }
+    private String categoria;
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<ProdutoVariante> variantes;
+
+    public Produto(){}
 
     public Integer getId() {
         return id;
@@ -33,7 +31,7 @@ public class Produto {
         this.id = id;
     }
 
-    public String getNome() {
+    public String getNome(){
         return nome;
     }
 
@@ -41,35 +39,11 @@ public class Produto {
         this.nome = nome;
     }
 
-    public Double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-
-    public String getUrlImagem() {
-        return urlImagem;
-    }
-
-    public void setUrlImagem(String urlImagem) {
-        this.urlImagem = urlImagem;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getDescricao() {
+    public String getDescricao(){
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
+    public void setDescricao(String descricao){
         this.descricao = descricao;
     }
 
@@ -81,23 +55,20 @@ public class Produto {
         this.tipo = tipo;
     }
 
-    public String getTamanhos() {
-        return tamanhos;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setTamanhos(String tamanhos) {
-        this.tamanhos = tamanhos;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
-    public String getCores() {
-        return cores;
+    public List<ProdutoVariante> getVariantes() {
+        return variantes;
     }
 
-    public void setCores(String cores) {
-        this.cores = cores;
+    public void setVariantes(List<ProdutoVariante> variantes) {
+        this.variantes = variantes;
     }
+
 }
-    
-
-
-
