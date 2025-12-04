@@ -4,7 +4,7 @@
 const API_URL = 'http://localhost:8080/api/produtos';
 
 // Wrappers dos Carrosséis
-const wrapperColecoes = document.querySelector('.product-carousel .swiper-wrapper');
+// ★ MUDANÇA: Removemos o wrapperColecoes, pois não vamos mexer nele ★
 const wrapperDestaques = document.querySelector('.destaques-carousel .swiper-wrapper');
 
 // Elementos de Interface
@@ -23,35 +23,30 @@ async function carregarProdutos() {
         const response = await fetch(API_URL);
         const produtos = await response.json();
 
-        // Limpa os carrosséis
-        wrapperColecoes.innerHTML = '';
+        // ★ MUDANÇA: Limpa APENAS os Destaques (Não toca nas Coleções) ★
         wrapperDestaques.innerHTML = '';
 
         produtos.forEach(produto => {
-            // ★ A GRANDE MUDANÇA: Lógica de Variantes ★
             
-            // Se o produto não tem variantes (estoque), não mostramos ele
+            // Se não tiver estoque, ignora
             if (!produto.variantes || produto.variantes.length === 0) {
                 return; 
             }
 
-            // Pegamos a PRIMEIRA variante para ser a "Capa" do produto
             const capa = produto.variantes[0]; 
-            
-            // Extraímos as cores únicas das variantes para mostrar as bolinhas
             const coresHtml = gerarBolinhasDeCor(produto.variantes);
 
-            // Decide onde desenhar
+            // ★ MUDANÇA: Se a categoria for 'colecao', a gente IGNORA aqui no JS
+            // porque elas já estão fixas no HTML.
             if (produto.categoria === 'colecao') {
-                wrapperColecoes.innerHTML += criarSlideColecao(produto, capa);
+                return; // Pula este item
             } 
-            else if (produto.categoria === 'destaque') {
-                wrapperDestaques.innerHTML += criarSlideDestaque(produto, capa, coresHtml);
-            }
+
+            // Todo o resto vai para "Produtos em Destaque"
+            wrapperDestaques.innerHTML += criarSlideDestaque(produto, capa, coresHtml);
         });
 
-        // Atualiza os Swipers
-        swiper.update();
+        // Atualiza apenas o Swiper de Destaques (o de coleções já inicia sozinho lá embaixo)
         swiperDestaques.update();
 
     } catch (error) {
@@ -60,23 +55,10 @@ async function carregarProdutos() {
 }
 
 /* =============================================
-   GERADORES DE HTML (TEMPLATES)
+   GERADORES DE HTML
    ============================================= */
 
-function criarSlideColecao(produto, capa) {
-    return `
-    <div class="swiper-slide">
-        <a href="#" class="card-marca">
-            <img src="${capa.urlImagem}" alt="${produto.nome}">
-            
-            <h3>${produto.nome}</h3>
-        </a>
-    </div>
-    `;
-}
-
 function criarSlideDestaque(produto, capa, coresHtml) {
-    // Usa imagem e preço da variante 'capa'
     return `
     <div class="swiper-slide">
         <div class="card-produto">
@@ -84,11 +66,9 @@ function criarSlideDestaque(produto, capa, coresHtml) {
                 <img src="${capa.urlImagem}" alt="${produto.nome}">
                 <div class="card-produto-info">
                     <h3>${produto.nome}</h3>
-                    
                     <div class="card-cores" style="display:flex; gap:5px; margin: 5px 0;">
                         ${coresHtml}
                     </div>
-
                     <div class="reviews">(0) ☆☆☆☆☆</div>
                     <p class="preco">R$ ${capa.preco.toFixed(2)}</p>
                 </div>
@@ -98,17 +78,12 @@ function criarSlideDestaque(produto, capa, coresHtml) {
     `;
 }
 
-// Função para extrair cores únicas das variantes (Ex: tem 5 variantes "Preto", mostra só 1 bolinha preta)
 function gerarBolinhasDeCor(variantes) {
-    // Set é uma lista que não aceita duplicatas
     const coresUnicas = new Set();
     let html = '';
-
     variantes.forEach(v => {
-        // Se essa cor (hex) ainda não foi processada...
         if (!coresUnicas.has(v.corHex)) {
             coresUnicas.add(v.corHex);
-            // Cria a bolinha
             html += `<span style="display:inline-block; width:15px; height:15px; border-radius:50%; background-color:${v.corHex}; border:1px solid #ddd;" title="${v.cor}"></span>`;
         }
     });
@@ -117,7 +92,7 @@ function gerarBolinhasDeCor(variantes) {
 
 
 /* =============================================
-   INICIALIZAÇÃO E EVENTOS (IGUAL AO ANTERIOR)
+   INICIALIZAÇÃO E EVENTOS
    ============================================= */
 
 if (history.scrollRestoration) history.scrollRestoration = "manual";
@@ -132,48 +107,21 @@ function toggleMenu() {
 botaoMenu.addEventListener('click', toggleMenu);
 overlay.addEventListener('click', toggleMenu);
 
-function handleScroll() {
-    if (window.scrollY > 1) headerPrincipal.classList.add('header-pequeno');
-    else headerPrincipal.classList.remove('header-pequeno');
-}
-window.addEventListener('scroll', handleScroll);
-
-// Swipers
+// --- SWIPER 1 (Nossas Coleções - FIXO) ---
 const swiper = new Swiper('.product-carousel', { 
-    // centeredSlides: false, // (Removido ou false para alinhar padrão)
     loop: true, 
     spaceBetween: 20,
-    
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-    },
-    pagination: { 
-        el:'.swiper-pagination',
-        clickable: true,
-    },
-    navigation: { 
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    
+    autoplay: { delay: 3000, disableOnInteraction: false },
+    pagination: { el:'.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
     breakpoints: { 
-        // Celular: 1 por vez
-        640: { 
-            slidesPerView: 1,
-        },
-        // Tablet: 2 por vez
-        768: {
-             slidesPerView: 2,
-        },
-        // Desktop: 3 por vez (O que você pediu)
-        1024: { 
-            slidesPerView: 3, 
-            spaceBetween: 30 
-        }
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 1 },
+        1024: { slidesPerView: 1, spaceBetween: 30 } // 3 Imagens por vez
     }
 });
 
+// --- SWIPER 2 (Produtos em Destaque - DINÂMICO) ---
 const swiperDestaques = new Swiper('.destaques-carousel', { 
     slidesPerView: 1, slidesPerGroup: 1, spaceBetween: 20,
     navigation: { nextEl: '.destaques-carousel .swiper-button-next', prevEl: '.destaques-carousel .swiper-button-prev' },
@@ -183,5 +131,47 @@ const swiperDestaques = new Swiper('.destaques-carousel', {
     }
 });
 
-// ★ INICIA TUDO ★
+// Inicia o carregamento (Só vai preencher os destaques)
 carregarProdutos();
+
+/* =============================================
+   BARRA DE PESQUISA EXPANSÍVEL
+   ============================================= */
+
+const searchBtn = document.querySelector('.search-btn');
+const searchBox = document.querySelector('.search-box');
+const searchInput = document.querySelector('.search-input');
+
+if (searchBtn) {
+    searchBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Impede o link de recarregar a página
+        
+        // Alterna a classe 'active' no container
+        searchBox.classList.toggle('active');
+        
+        // Se abriu, foca no input para digitar logo
+        if (searchBox.classList.contains('active')) {
+            searchInput.focus();
+        }
+    });
+
+    // (Opcional) Fechar se clicar fora
+    document.addEventListener('click', (e) => {
+        if (!searchBox.contains(e.target)) {
+            searchBox.classList.remove('active');
+        }
+    });
+    
+    // (Opcional) Ir para a página de busca ao apertar Enter
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const termo = searchInput.value.trim();
+            
+            if (termo) {
+                // Redireciona para a página de produtos passando o termo na URL
+                // Ex: produtos.html?busca=legging
+                window.location.href = `produtos.html?busca=${encodeURIComponent(termo)}`;
+            }
+        }
+    });
+}

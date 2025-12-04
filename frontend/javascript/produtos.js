@@ -126,6 +126,88 @@ function gerarBolinhasDeCor(variantes) {
     return html;
 }
 
+/* =============================================
+   BARRA DE PESQUISA EXPANSÍVEL
+   ============================================= */
+
+const searchBtn = document.querySelector('.search-btn');
+const searchBox = document.querySelector('.search-box');
+const searchInput = document.querySelector('.search-input');
+
+if (searchBtn) {
+    searchBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Impede o link de recarregar a página
+        
+        // Alterna a classe 'active' no container
+        searchBox.classList.toggle('active');
+        
+        // Se abriu, foca no input para digitar logo
+        if (searchBox.classList.contains('active')) {
+            searchInput.focus();
+        }
+    });
+
+    // (Opcional) Fechar se clicar fora
+    document.addEventListener('click', (e) => {
+        if (!searchBox.contains(e.target)) {
+            searchBox.classList.remove('active');
+        }
+    });
+    
+    // (Opcional) Ir para a página de busca ao apertar Enter
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            // Redireciona para a página de produtos com o termo de busca
+            // (Você precisará implementar a lógica de ler '?busca=...' no produtos.js depois)
+            window.location.href = `produtos.html?busca=${searchInput.value}`;
+        }
+    });
+}
+
+// ============================================================
+// 1. CARREGAR E INICIAR
+// ============================================================
+async function carregarTodosProdutos() {
+    try {
+        // 1. Verifica se tem busca na URL
+        const params = new URLSearchParams(window.location.search);
+        const termoBusca = params.get('busca');
+
+        let urlParaChamar = API_URL; // Padrão: Pega tudo
+
+        // Se tiver busca, muda a URL da API
+        if (termoBusca) {
+            // Muda o título da página para feedback visual
+            const titulo = document.querySelector('h1');
+            if(titulo) titulo.innerText = `Resultados para: "${termoBusca}"`;
+            
+            // Usa a nova rota que criamos no Java
+            urlParaChamar = `${API_URL}/buscar?termo=${termoBusca}`;
+        }
+
+        // 2. Faz a requisição (seja busca ou tudo)
+        const response = await fetch(urlParaChamar);
+        const produtos = await response.json();
+
+        // Filtra apenas produtos que têm estoque (variantes)
+        // (A busca do Java pode trazer produtos sem estoque, é bom filtrar aqui também)
+        todosOsProdutos = produtos.filter(p => p.variantes && p.variantes.length > 0);
+
+        if (todosOsProdutos.length === 0) {
+            gradeProdutos.innerHTML = '<p style="grid-column: 1/-1; text-align:center; font-size: 18px; margin-top: 20px;">Nenhum produto encontrado com esse nome.</p>';
+            containerPaginacao.innerHTML = ''; // Esconde a paginação
+            return;
+        }
+
+        // Renderiza a primeira página com os resultados
+        renderizarPagina(1);
+
+    } catch (error) {
+        console.error(error);
+        gradeProdutos.innerHTML = '<p>Erro ao carregar produtos.</p>';
+    }
+}
+
 function toggleMenu() {
     menu.classList.toggle('menu-aberto');
     conteudo.classList.toggle('menu-aberto');
@@ -135,11 +217,6 @@ function toggleMenu() {
 botaoMenu.addEventListener('click', toggleMenu);
 overlay.addEventListener('click', toggleMenu);
 
-function handleScroll() {
-    if (window.scrollY > 1) headerPrincipal.classList.add('header-pequeno');
-    else headerPrincipal.classList.remove('header-pequeno');
-}
-window.addEventListener('scroll', handleScroll);
-
 // Inicia
 carregarTodosProdutos();
+

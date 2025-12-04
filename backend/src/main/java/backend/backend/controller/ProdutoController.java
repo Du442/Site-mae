@@ -60,6 +60,13 @@ public class ProdutoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // --- BUSCA POR NOME ---
+    // Ex: GET /api/produtos/buscar?termo=legging
+    @GetMapping("/buscar")
+    public List<Produto> buscarProdutos(@RequestParam("termo") String termo) {
+        return produtoRepository.findByNomeContainingIgnoreCase(termo);
+    }
+
     // CRIAR PRODUTO (Cria apenas o "Pai" - Nome, Descrição, Tipo)
     @PostMapping
     public Produto criarProduto(@RequestBody Produto produto) {

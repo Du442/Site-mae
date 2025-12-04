@@ -38,17 +38,42 @@
 
     
     <header class="cabecalho-principal" id="cabecalho-principal">
+        
         <div class="logo-container">
             <a href="paginaPrincipal.html" class="logo-principal">
-                <img src="img/logo2.png" alt="Logo marca">
+                <img src="img/icons-vertical-menu/logo2.png" alt="Logo marca">
             </a>
         </div>
+
         <nav class="menu-navegacao">
             <ul class="nav-links">
-                <li><a href="paginaPrincipal.html" title="Inicio">Início</a></li>
-                <li><a href="#" title="Pesquisar">Pesquisar</a></li>
-                <li><a href="telaCadastro.html" title="Cadastro">Cadastro</a></li>
-                <li><a href="telaCarrinho.html" title="Carrinho">Carrinho</a></li>
+                <li>
+                    <a href="paginaPrincipal.html" title="Início">
+                        <img src="img/icons-vertical-menu/logo home.png" alt="Início" class="nav-icon">
+                    </a>
+                </li>
+
+                <li class="search-item">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Buscar...">
+                        
+                        <a href="#" class="search-btn" title="Pesquisar">
+                            <img src="img/icons-vertical-menu/logo-lupa3.png" alt="Pesquisar" class="nav-icon">
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="telaCadastro.html" title="Cadastro">
+                        <img src="img/icons-vertical-menu/logo-cadastro2.png" alt="Cadastro" class="nav-icon">
+                    </a>
+                </li>
+
+                <li>
+                    <a href="telaCarrinho.html" title="Carrinho">
+                        <img src="img/icons-vertical-menu/logo-carrinho2.png" alt="Carrinho" class="nav-icon">
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -78,9 +103,49 @@
     
     <section class="product-carousel-section">
         <h2>Nossas Coleções</h2>
+
         <div class="swiper product-carousel">
             <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <a href="#" class="card-marca">
+                        <img src="img/banners-marcas/banner-cm3.png" alt="Marca 1">
+                        <h3>Corrente Marinha</h3>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="#" class="card-marca">
+                        <img src="img/banners-marcas/banner-mec2.png" alt="Marca 2">
+                        <h3>Movimento & Companhia</h3>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="#" class="card-marca">
+                        <img src="img/banners-marcas/banner-ab.png" alt="Marca 3">
+                        <h3>Areia Bronze</h3>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="#" class="card-marca">
+                        <img src="img/banners-marcas/banner-fina2.png" alt="Marca 4">
+                        <h3>FinaForma Fitness</h3>
+                    </a>
+                </div>
+
+                <!--
+                <div class="swiper-slide">
+                    <a href="#" class="card-marca">
+                        <img src="" alt="Marca 5">
+                        <h3>DivinaForma</h3>
+                    </a>
+                </div>
+                -->
+
             </div>
+
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
             <div class="swiper-pagination"></div>
@@ -135,104 +200,7 @@
     <section class="destaques">
         <h2>Produtos em destaque</h2>
         <div class="swiper destaques-carousel">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="card-produto">
-                        <a href="#">
-                            <img src="#" alt="produto 1">
-                            <div class="card-produto-info">
-                                <h3>Produto1</h3>
-                                <div class="reviews">avaliações</div>
-                                <p class="preco">*valor*</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card-produto">
-                        <a href="#">
-                            <img src="#" alt="produto 2">
-                            <div class="card-produto-info">
-                                <h3>Produto2</h3>
-                                <div class="reviews">avaliações</div>
-                                <p class="preco">*valor*</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card-produto">
-                        <a href="#">
-                            <img src="#" alt="produto 3">
-                            <div class="card-produto-info">
-                                <h3>Produto3</h3>
-                                <div class="reviews">avaliações</div>
-                                <p class="preco">*valor*</p>
-                            </div>
-                        </a>
-                    </div> 
-                </div>
-                <div class="swiper-slide">
-                    <div class="card-produto">
-                        <a href="#">
-                            <img src="#" alt="produto 4">
-                            <div class="card-produto-info">
-                                <h3>Produto4</h3>
-                                <div class="reviews">avaliações</div>
-                                <p class="preco">*valor*</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card-produto">
-                        <a href="#">
-                            <img src="#" alt="produto 5">
-                            <div class="card-produto-info">
-                                <h3>Produto5</h3>
-                                <div class="reviews">avaliações</div>
-                                <p class="preco">*valor*</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card-produto">
-                        <a href="#">
-                            <img src="#" alt="produto 6">
-                            <div class="card-produto-info">
-                                <h3>Produto6</h3>
-                                <div class="reviews">avaliações</div>
-                                <p class="preco">*valor*</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card-produto">
-                        <a href="#">
-                            <img src="#" alt="produto 7">
-                            <div class="card-produto-info">
-                                <h3>Produto7</h3>
-                                <div class="reviews">avaliações</div>
-                                <p class="preco">*valor*</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card-produto">
-                        <a href="#">
-                            <img src="#" alt="produto 8">
-                            <div class="card-produto-info">
-                                <h3>Produto8</h3>
-                                <div class="reviews">avaliações</div>
-                                <p class="preco">*valor*</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <div class="swiper-wrapper"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
         </div> 
@@ -264,20 +232,20 @@
             <div class="rodape-coluna">
                 <h4>Siga-nos</h4>
                 <div class="redes-sociais">
-                    <a href="#" title="Instagram"><img src="img/logo-instagram.png" alt="Instagram"></a>
-                    <a href="#" title="Facebook"><img src="img/logo-facebook.png" alt="Facebook"></a>
-                    <a href="#" title="TikTok"><img src="img/logo-tiktok.png" alt="TikTok"></a>
+                    <a href="https://www.instagram.com/taci.vipstyle/" title="Instagram"><img src="img/icons-rodape/instagram.png" alt="Instagram"></a>
+                    <a href="https://www.facebook.com/taciane.farezin/?locale=pt_BR" title="Facebook"><img src="img/icons-rodape/facebook.png" alt="Facebook"></a>
+                    <a href="https://br.pinterest.com/tacivipstyle/" title="Pinterest"><img src="img/icons-rodape/pinterest.png" alt="TikTok"></a>
                 </div>
             </div>
         </div>
         <div class="rodape-copyright">
             <div class="rodape-pagamento">
                 <div class="pagamento-icones">
-                    <img src="#" alt="Visa">
-                    <img src="#" alt="MasterCard">
-                    <img src="#" alt="Elo">
-                    <img src="#" alt="Pix">
-                    <img src="#" alt="Boleto">
+                    <img src="img/icons-rodape/visa.png" alt="Visa">
+                    <img src="img/icons-rodape/mastercard.png" alt="MasterCard">
+                    <img src="img/icons-rodape/elo.png" alt="Elo">
+                    <img src="img/icons-rodape/pix.png" alt="Pix">
+                    <img src="img/icons-rodape/boleto.png" alt="Boleto">
                 </div>
             </div>
             <p>&copy; 2025 Vipstyle Fitness. Todos os direitos reservados.</p>
