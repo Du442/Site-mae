@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Todos os Produtos - Vipstyle Fitness</title>
+    
+    <link rel="stylesheet" href="css/style.css"/>
+    
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Momo+Trust+Sans:wght@200..800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <button class="btn-menu-toggle" id="btn-menu-toggle"><span class="linha"></span><span class="linha"></span><span class="linha"></span></button>
+    
+    <nav class="menu-vertical" id="menu-vertical">
+        <ul>
+            <li><a href="paginaPrincipal.html">Início</a></li>
+            <li><a href="produtos.html">Catálogo</a></li> <li><a href="#">Coleções</a></li>
+            <li><a href="#">Entrar em contato</a></li>
+        </ul> 
+    </nav>
+
+    <header class="cabecalho-principal" id="cabecalho-principal">
+        <div class="logo-container">
+            <a href="paginaPrincipal.html" class="logo-principal"><img src="img/icons-vertical-menu/logo2.png" alt="Logo marca"></a>
+        </div>
+        <nav class="menu-navegacao">
+            <ul class="nav-links">
+                <li>
+                    <a href="paginaPrincipal.html" title="Início">
+                        <img src="img/icons-vertical-menu/logo home.png" alt="Início" class="nav-icon">
+                    </a>
+                </li>
+
+                <li class="search-item">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Buscar...">
+                        
+                        <a href="#" class="search-btn" title="Pesquisar">
+                            <img src="img/icons-vertical-menu/logo-lupa3.png" alt="Pesquisar" class="nav-icon">
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="telaCadastro.html" title="Cadastro">
+                        <img src="img/icons-vertical-menu/logo-cadastro2.png" alt="Cadastro" class="nav-icon">
+                    </a>
+                </li>
+
+                <li>
+                    <a href="telaCarrinho.html" title="Carrinho">
+                        <img src="img/icons-vertical-menu/logo-carrinho2.png" alt="Carrinho" class="nav-icon">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main class="conteudo-principal" id="conteudo-principal">
+        <div class="conteudo-wrapper" style="padding: 40px 20px;">
+            
+            <h1 style="text-align: center; margin-bottom: 30px; color: #333;">Todos os Produtos</h1>
+
+            <div id="grade-produtos" class="grid-produtos">
+                </div>
+            
+            <div id="paginacao-container" class="paginacao"></div>
+
+        </div> 
+    </main>
+
+
+    <footer class="rodape-site">
+         <div class="rodape-container">
+            </div>
+         <div class="rodape-copyright">
+            <div class="rodape-pagamento2">
+                <div class="pagamento-icones">
+                    <img src="#" alt="Visa">
+                    <img src="#" alt="MasterCard">
+                    <img src="#" alt="Elo">
+                    <img src="#" alt="Pix">
+                    <img src="#" alt="Boleto">
+                </div>
+            </div>
+            <p>&copy; 2025 Vipstyle Fitness. Todos os direitos reservados.</p>
+         </div>
+    </footer>
+
+    <script src="javascript/produtos.js"></script>
+    
+</body>
+</html>

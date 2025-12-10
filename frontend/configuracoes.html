@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Configurações - Vipstyle Fitness</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="cabecalho-principal">
+        <div class="logo-container"><a href="paginaPrincipal.html"><img src="img/icons-vertical-menu/logo2.png" alt="Logo"></a></div>
+        <nav class="menu-navegacao">
+            <ul class="nav-links">
+                <li><a href="paginaPrincipal.html">Início</a></li>
+                <li><a href="produtos.html">Catálogo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo-auth">
+        <div class="auth-container" style="max-width: 600px;">
+            
+            <div class="perfil-header">
+                <h2>Configurações</h2>
+                <p>Gerencie sua segurança e preferências</p>
+            </div>
+            <hr style="margin: 20px 0; border-top: 1px solid #eee;">
+
+            <div class="config-section">
+                <h3><i class="fa-solid fa-lock"></i> Segurança</h3>
+                <form id="form-trocar-senha">
+                    <div class="input-group">
+                        <label>Senha Atual</label>
+                        <input type="password" id="senha-atual" required>
+                    </div>
+                    <div class="row-dupla">
+                        <div class="input-group">
+                            <label>Nova Senha</label>
+                            <input type="password" id="senha-nova" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Confirmar Nova</label>
+                            <input type="password" id="senha-confirma" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-auth" style="margin-top: 10px;">Atualizar Senha</button>
+                </form>
+            </div>
+
+            <hr style="margin: 30px 0; border-top: 1px solid #eee;">
+
+            <div class="config-section">
+                <h3><i class="fa-solid fa-bell"></i> Notificações</h3>
+                <div style="margin-top: 15px;">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" checked style="width: 20px; height: 20px;">
+                        Receber ofertas e promoções por e-mail
+                    </label>
+                </div>
+            </div>
+
+            <hr style="margin: 30px 0; border-top: 1px solid #eee;">
+
+            <div class="config-section danger-zone">
+                <h3 style="color: #dc3545;"><i class="fa-solid fa-triangle-exclamation"></i> Zona de Perigo</h3>
+                <p style="font-size: 13px; color: #666; margin-bottom: 15px;">
+                    Ao excluir sua conta, todos os seus dados e histórico de pedidos serão apagados permanentemente.
+                </p>
+                <button onclick="excluirConta()" class="btn-auth" style="background-color: #fff; color: #dc3545; border: 1px solid #dc3545;">
+                    Excluir minha conta
+                </button>
+            </div>
+
+            <div class="auth-footer" style="margin-top: 30px;">
+                <a href="minha-conta.html">Voltar para Minha Conta</a>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="javascript/main.js"></script>
+    <script src="javascript/configuracoes.js"></script>
+</body>
+</html>

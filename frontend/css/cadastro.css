@@ -1,0 +1,58 @@
+/* --- Estilos da Página de Cadastro --- */
+.cadastro-container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.cadastro-container h2 {
+    color: #d033d1;
+    margin-bottom: 10px;
+}
+
+.cadastro-container .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.cadastro-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.cadastro-container input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.cadastro-container input:focus {
+    border-color: #d033d1;
+    outline: none;
+}
+
+.btn-cadastrar {
+    width: 100%;
+    padding: 15px;
+    background-color: #d033d1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.btn-cadastrar:hover {
+    background-color: #a020a1;
+}

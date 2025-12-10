@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Admin - Estoque Avançado</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Gerenciamento de Produtos e Estoque</h1>
+
+        <div class="card-admin">
+            <h3>1. Dados Gerais do Produto</h3>
+            <form id="form-produto">
+                <input type="hidden" id="produto-id">
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>Nome do Produto:</label>
+                        <input type="text" id="nome-produto" required placeholder="Ex: Legging Conforto">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo:</label>
+                        <select id="tipo-produto" required>
+                            <option value="legging">Legging</option>
+                            <option value="top">Top</option>
+                            <option value="shorts">Shorts</option>
+                            <option value="conjunto">Conjunto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label>Onde Exibir:</label>
+                        <select id="categoria-produto" required>
+                            <option value="destaque">Destaques</option>
+                            <option value="colecao">Coleções</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Descrição:</label>
+                    <textarea id="descricao-produto" rows="2"></textarea>
+                </div>
+
+                <button type="submit" class="btn-save">Salvar Dados Gerais</button>
+                <button type="button" id="btn-novo" onclick="limparFormulario()">Novo Produto</button>
+            </form>
+        </div>
+
+        <div id="painel-variantes" class="card-admin" style="display: none; border-left: 5px solid #d033d1;">
+            <h3>2. Gerenciar Estoque e Cores (Variantes)</h3>
+            <p>Adicione cores, tamanhos e fotos para: <strong id="nome-produto-selecionado">---</strong></p>
+
+            <form id="form-variante">
+                <div class="row">
+                    <div class="form-group">
+                        <label>Cor (Nome):</label>
+                        <input type="text" id="var-cor" placeholder="Ex: Preto">
+                    </div>
+                    <div class="form-group">
+                        <label>Cor (Hex):</label>
+                        <input type="color" id="var-cor-hex" value="#000000">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label>Preço Unitário (R$):</label>
+                        <input type="number" step="0.01" id="var-preco" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Foto desta Cor:</label>
+                        <input type="file" id="input-arquivo-imagem">
+                        <input type="hidden" id="var-url-imagem">
+                        <small id="status-upload" style="color: blue;"></small>
+                    </div>
+                </div>
+
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Estoque por Tamanho:</label>
+                <div class="grade-tamanhos">
+                    <div class="tamanho-item">
+                        <span>P</span>
+                        <input type="number" min="0" value="" placeholder="0" data-tamanho="P" class="input-qtd-tamanho">
+                    </div>
+                    <div class="tamanho-item">
+                        <span>M</span>
+                        <input type="number" min="0" value="" placeholder="0" data-tamanho="M" class="input-qtd-tamanho">
+                    </div>
+                    <div class="tamanho-item">
+                        <span>G</span>
+                        <input type="number" min="0" value="" placeholder="0" data-tamanho="G" class="input-qtd-tamanho">
+                    </div>
+                    <div class="tamanho-item">
+                        <span>GG</span>
+                        <input type="number" min="0" value="" placeholder="0" data-tamanho="GG" class="input-qtd-tamanho">
+                    </div>
+                </div>
+
+                <br>
+                <button type="submit" class="btn-add-variant">+ Adicionar Grade ao Estoque</button>
+            </form>
+
+            <table class="tabela-variantes">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Cor</th>
+                        <th>Tam</th>
+                        <th>Qtd</th>
+                        <th>Preço</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-variantes">
+                    </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+       <hr>
+
+        <div class="card-admin">
+            <h2>Produtos Cadastrados</h2>
+
+            <div class="filtros-container" style="display: flex; gap: 15px; margin-bottom: 20px;">
+                
+                <input type="text" id="input-pesquisa" placeholder="🔍 Pesquisar por nome..." style="flex: 2;">
+                
+                <select id="filtro-tipo" style="flex: 1;">
+                    <option value="todos">Todos os Tipos</option>
+                    <option value="legging">Legging</option>
+                    <option value="top">Top</option>
+                    <option value="shorts">Shorts</option>
+                    <option value="conjunto">Conjunto</option>
+                    <option value="camiseta">Camiseta</option>
+                </select>
+            </div>
+
+            <table class="tabela-variantes" style="width: 100%;">
+                <thead>
+                    <tr style="background-color: #333; color: white;">
+                        <th style="padding: 10px;">Produto</th>
+                        <th>Tipo</th>
+                        <th>Categoria</th>
+                        <th>Estoque Total</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-produtos">
+                    </tbody>
+            </table>
+        </div>
+
+    <script src="javascript/admin.js"></script>
+</body>
+</html>

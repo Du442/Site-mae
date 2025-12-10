@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Conta - Vipstyle Fitness</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/minhaConta.css">
+    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="cabecalho-principal">
+        <div class="logo-container">
+            <a href="paginaPrincipal.html"><img src="img/icons-vertical-menu/logo2.png" alt="Logo"></a>
+        </div>
+        <nav class="menu-navegacao">
+            <ul class="nav-links">
+                <li><a href="paginaPrincipal.html">Início</a></li>
+                <li><a href="produtos.html">Catálogo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo-auth"> <div class="auth-container perfil-container">
+            
+            <div class="perfil-header">
+                <img id="img-avatar-grande" src="" alt="Avatar" class="avatar-gigante">
+                <h2 id="texto-nome-grande">Carregando...</h2>
+                <p id="texto-email-grande" style="color: #666; font-size: 14px;">...</p>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+            <form id="form-perfil">
+                <div class="row-dupla">
+                    <div class="input-group input-icon-container">
+                        <label>Nome Completo</label>
+                        <input type="text" id="perfil-nome" readonly>
+                        <i class="fa-solid fa-pen action-icon" onclick="toggleEdicao('perfil-nome', this)"></i>
+                    </div>
+
+                    <div class="input-group input-icon-container">
+                        <label>Telefone</label>
+                        <input type="text" id="perfil-telefone" readonly>
+                        <i class="fa-solid fa-pen action-icon" onclick="toggleEdicao('perfil-telefone', this)"></i>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>E-mail de Cadastro (Não alterável)</label>
+                    <input type="text" id="perfil-email" readonly style="background-color: #e9e9e9; cursor: not-allowed;">
+                </div>
+
+                <div class="input-group input-icon-container">
+                    <label>Endereço de Entrega</label>
+                    <input type="text" id="perfil-endereco" readonly>
+                    <i class="fa-solid fa-pen action-icon" onclick="toggleEdicao('perfil-endereco', this)"></i>
+                </div>
+
+                <div class="botoes-perfil">
+                    <button type="button" class="btn-auth" style="background-color: #333;" onclick="fazerLogout()">Sair da Conta</button>
+                </div>
+            </form>
+
+        </div>
+    </main>
+
+    <script src="javascript/minhaConta.js"></script>
+    <script src="javascript/main.js"></script>
+
+</body>
+</html>
