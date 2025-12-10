@@ -175,3 +175,75 @@ if (searchBtn) {
         }
     });
 }
+
+/* =============================================
+   SISTEMA DE USUÁRIO (LOGIN / LOGOUT)
+   ============================================= */
+
+function verificarLogin() {
+    // 1. Tenta ler o usuário do cofre
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
+    
+    // Se existir alguém logado...
+    if (usuarioLogado) {
+        const cliente = JSON.parse(usuarioLogado);
+        const primeiroNome = cliente.nome.split(' ')[0];
+        const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(cliente.nome)}&background=random&color=fff&bold=true`;
+
+        // 2. Encontra o link de cadastro
+        const linkCadastro = document.querySelector('a[href="telaCadastro.html"]');
+        
+        if (linkCadastro) {
+            // Remove o href para não clicar e ir para lugar nenhum (o hover fará o trabalho)
+            linkCadastro.href = "javascript:void(0)"; 
+            
+            // ★ AQUI MUDA: Criamos a estrutura do Dropdown ★
+            linkCadastro.innerHTML = `
+                <div class="dropdown-container">
+                    <div class="user-profile-container">
+                        <img src="${avatarUrl}" class="nav-icon user-avatar">
+                        <span class="user-name">Olá, ${primeiroNome}</span>
+                    </div>
+                    
+                    <div class="dropdown-menu">
+                        <a href="minhaConta.html">Minha Conta</a>
+                        <a href="#">Meus Pedidos</a>
+                        <a href="configuracoes.html">Configurações</a>
+                        <hr style="margin: 0; border: 0; border-top: 1px solid #eee;">
+                        <a href="#" id="btn-logout-menu">Sair</a>
+                    </div>
+                </div>
+            `;
+            
+            // 3. Adiciona a lógica de Logout APENAS no botão "Sair" do menu
+            // (Precisamos usar setTimeout para garantir que o HTML foi criado antes de buscar o ID)
+            setTimeout(() => {
+                const btnLogout = document.getElementById('btn-logout-menu');
+                if (btnLogout) {
+                    btnLogout.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if(confirm(`Deseja sair da conta de ${primeiroNome}?`)) {
+                            fazerLogout();
+                        }
+                    });
+                }
+            }, 100);
+            
+            linkCadastro.title = "Menu do Usuário";
+        }
+    }
+}
+
+function fazerLogout() {
+    // 1. Limpa os dados do navegador
+    localStorage.removeItem('usuarioLogado');
+    
+    // 2. Avisa (Opcional, pode remover se quiser ser mais rápido)
+    alert("Você saiu da conta.");
+    
+    // 3. Manda o usuário para a tela de login ou recarrega a página
+    window.location.href = 'telaCadastro.html'; 
+}
+
+// Executa ao carregar a página
+verificarLogin();

@@ -1,0 +1,81 @@
+/* --- ESTILOS DA TELA MINHA CONTA --- */
+
+/* Ajuste para o Card ficar um pouco mais largo na tela de perfil */
+.perfil-container {
+    max-width: 600px; /* Mais espaço horizontal */
+}
+
+/* Avatar Gigante no topo */
+.perfil-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar-gigante {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #d033d1; /* Borda Roxa grossa */
+    margin-bottom: 15px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(208, 51, 209, 0.2);
+}
+
+.perfil-header h2 {
+    margin: 0;
+    color: #333;
+    font-size: 22px;
+}
+
+/* Inputs "Readonly" (Travados) */
+/* Deixamos com cara de que não dá pra editar clicando neles */
+.input-group input[readonly] {
+    background-color: #fcfcfc;
+    border: 1px solid #eee;
+    color: #555;
+    cursor: default;
+}
+
+.input-group input[readonly]:focus {
+    border-color: #ccc; /* Não fica roxo pois não é editável */
+    box-shadow: none;
+}
+
+.botoes-perfil {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.input-icon-container {
+    position: relative; 
+}
+
+/* O ícone em si */
+.action-icon {
+    position: absolute;
+    right: 15px;      /* 15px da direita */
+    bottom: 12px;     /* Alinhado na parte de baixo (ajuste se precisar) */
+    cursor: pointer;
+    color: #d033d1;   /* Cor Roxa */
+    font-size: 16px;
+    background: white;
+    padding-left: 5px;
+    transition: transform 0.2s;
+}
+
+.action-icon:hover {
+    transform: scale(1.2); /* Aumenta um pouco ao passar o mouse */
+    color: #b52cb6;
+}
+
+/* Quando o input está destravado (Editando) */
+.input-group input.editando {
+    background-color: #fff !important;
+    border-color: #d033d1 !important;
+    box-shadow: 0 0 0 4px rgba(208, 51, 209, 0.1);
+    cursor: text;
+}

@@ -1,6 +1,10 @@
+/* =============================================
+   CONFIGURAÇÕES GERAIS
+   ============================================= */
 const API_URL = 'http://localhost:8080/api/clientes/cadastrar';
+const API_LOGIN_URL = 'http://localhost:8080/api/clientes/login';
 
-// --- 1. Elementos do DOM ---
+// --- Elementos do DOM (Cadastro) ---
 const formCadastro = document.getElementById('form-cadastro-cliente');
 const inputNome = document.getElementById('cliente-nome');
 const inputEmail = document.getElementById('cliente-email');
@@ -10,13 +14,23 @@ const inputSenha = document.getElementById('cliente-senha');
 const inputConfirma = document.getElementById('cliente-senha-confirma');
 const msgErroSenha = document.getElementById('msg-erro-senha');
 
-// --- 2. Máscara de Telefone (Formata enquanto digita) ---
+// --- Elementos do DOM (Login) ---
+const formLogin = document.getElementById('form-login-cliente');
+const boxCadastro = document.getElementById('box-cadastro');
+const boxLogin = document.getElementById('box-login');
+const linkIrLogin = document.getElementById('link-ir-para-login');
+const linkIrCadastro = document.getElementById('link-ir-para-cadastro');
+const tituloPagina = document.getElementById('titulo-pagina');
+
+
+/* =============================================
+   FUNÇÕES AUXILIARES (VALIDAÇÃO E MÁSCARA)
+   ============================================= */
+
+// 1. Máscara de Telefone
 if (inputTelefone) {
     inputTelefone.addEventListener('input', (e) => {
-        let valor = e.target.value.replace(/\D/g, "");
-        valor = valor.substring(0, 11); // Limita tamanho
-
-        // Formata (XX) XXXXX-XXXX
+        let valor = e.target.value.replace(/\D/g, "").substring(0, 11);
         if (valor.length > 10) {
             valor = valor.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
         } else if (valor.length > 5) {
@@ -30,59 +44,63 @@ if (inputTelefone) {
     });
 }
 
-// --- 3. Funções Auxiliares de Validação ---
-
+// 2. Validação de Email (Regex)
 function validarEmail(email) {
     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return re.test(email);
 }
 
-// ★ NOVA FUNÇÃO: Valida Força da Senha ★
-function validarSenhaForte(senha) {
-    // Regra 1: Mínimo de 8 caracteres
-    if (senha.length < 8) {
-        alert("A senha deve ter no mínimo 8 caracteres.");
-        return false;
+// 3. Validação de Typos
+function verificarTyposEmail(email) {
+    const dominiosErrados = ["gmial.com", "hotmial.com", "outlok.com", "yahooo.com"];
+    const partes = email.split('@');
+    if (partes.length === 2) {
+        const dominioDigitado = partes[1].toLowerCase();
+        if (dominiosErrados.some(d => dominioDigitado.includes(d))) return true;
     }
-    
-    // Regra 2: Pelo menos 1 letra maiúscula (Regex: procura de A a Z)
-    if (!/[A-Z]/.test(senha)) {
-        alert("A senha deve conter pelo menos uma letra maiúscula.");
-        return false;
-    }
-
-    // (Opcional) Se quiser exigir número também, descomente abaixo:
-    /*
-    if (!/[0-9]/.test(senha)) {
-        alert("A senha deve conter pelo menos um número.");
-        return false;
-    }
-    */
-
-    return true;
+    return false;
 }
 
-// --- 4. EVENTO DE ENVIO (Onde tudo acontece) ---
+
+/* =============================================
+   LÓGICA DE ALTERNÂNCIA (LOGIN <-> CADASTRO)
+   ============================================= */
+if (linkIrLogin) {
+    linkIrLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        boxCadastro.style.display = 'none';
+        boxLogin.style.display = 'block';
+        if(tituloPagina) tituloPagina.innerText = "Bem-vindo de volta!";
+    });
+}
+
+if (linkIrCadastro) {
+    linkIrCadastro.addEventListener('click', (e) => {
+        e.preventDefault();
+        boxLogin.style.display = 'none';
+        boxCadastro.style.display = 'block';
+        if(tituloPagina) tituloPagina.innerText = "Crie sua conta";
+    });
+}
+
+
+/* =============================================
+   LÓGICA DE ENVIO DO CADASTRO (SEU CÓDIGO ANTIGO)
+   ============================================= */
 if (formCadastro) {
     formCadastro.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Impede recarregar a página
+        e.preventDefault(); 
 
-        // --- A. Validação de Senha (Iguais) ---
+        // A. Validação de Senha
         if (inputSenha.value !== inputConfirma.value) {
             alert("As senhas não coincidem!");
             if(msgErroSenha) msgErroSenha.style.display = 'block';
             inputConfirma.focus();
-            return; // PARA TUDO
+            return; 
         }
         if(msgErroSenha) msgErroSenha.style.display = 'none';
 
-        // --- ★ B. Validação de Senha (Força) - NOVO ★ ---
-        if (!validarSenhaForte(inputSenha.value)) {
-            inputSenha.focus();
-            return; // PARA TUDO SE A SENHA FOR FRACA
-        }
-
-        // --- C. Validação de Telefone ---
+        // B. Validação de Telefone
         const telLimpo = inputTelefone.value.replace(/\D/g, "");
         if (telLimpo.length < 10) {
             alert("Telefone inválido. Digite o DDD + Número.");
@@ -90,40 +108,23 @@ if (formCadastro) {
             return; 
         }
 
-        // --- D. Validação de Email (Regex) ---
+        // C. Validação de Email (Regex e Typos)
         if (!validarEmail(inputEmail.value)) {
             alert("Formato de e-mail inválido.");
             inputEmail.focus();
             return; 
         }
-
-        // --- E. Validação Hunter.io (API Externa) ---
-        const HUNTER_API_KEY = 'bd3feea0639878b7ae3641a23c289db710b35b67'; 
-        const urlHunter = `https://api.hunter.io/v2/email-verifier?email=${inputEmail.value}&api_key=${HUNTER_API_KEY}`;
-        
-        const btnSubmit = formCadastro.querySelector('button[type="submit"]');
-        const textoOriginal = btnSubmit.innerText;
-
-        try {
-            btnSubmit.innerText = "Verificando...";
-            btnSubmit.disabled = true;
-
-            const responseHunter = await fetch(urlHunter);
-            const dataHunter = await responseHunter.json();
-
-            if (dataHunter.data && dataHunter.data.result === 'undeliverable') {
-                alert("Este e-mail parece não existir. Verifique a digitação.");
-                btnSubmit.innerText = textoOriginal;
-                btnSubmit.disabled = false;
-                return; 
-            }
-
-        } catch (error) {
-            console.warn("Hunter.io falhou ou sem internet. Pulando verificação...");
+        if (verificarTyposEmail(inputEmail.value)) {
+            alert("Parece que você digitou o e-mail errado (ex: 'gmial'). Verifique.");
+            inputEmail.focus();
+            return; 
         }
 
-        // --- F. Envio para o Backend Java ---
+        // D. Envio para o Backend
+        const btnSubmit = formCadastro.querySelector('button[type="submit"]');
+        const textoOriginal = btnSubmit.innerText;
         btnSubmit.innerText = "Cadastrando...";
+        btnSubmit.disabled = true;
 
         const cliente = {
             nome: inputNome.value,
@@ -141,24 +142,15 @@ if (formCadastro) {
             });
 
             if (response.ok) {
-                alert('Cadastro realizado com sucesso! Bem-vindo(a).');
-                window.location.href = 'paginaPrincipal.html';
+                const clienteSalvo = await response.json();
                 
+                // Salva login e redireciona
+                localStorage.setItem('usuarioLogado', JSON.stringify(clienteSalvo));
+                alert(`Cadastro realizado! Bem-vindo(a), ${clienteSalvo.nome}!`);
+                window.location.href = 'paginaPrincipal.html'; // ou paginaPrincipal.html
+            
             } else if (response.status === 409) {
-                // ★ CORREÇÃO AQUI ★
-                // Lê a mensagem de texto que o Java enviou
-                const mensagemErro = await response.text(); 
-                
-                // Mostra a mensagem exata (Se foi email ou telefone)
-                alert("Erro: " + mensagemErro);
-
-                // Tenta descobrir qual campo ficar vermelho
-                if (mensagemErro.toLowerCase().includes("telefone")) {
-                    document.getElementById('cliente-telefone').style.borderColor = "red";
-                } else {
-                    document.getElementById('cliente-email').style.borderColor = "red";
-                }
-
+                alert('Erro: Este e-mail ou telefone já possui cadastro.');
             } else {
                 alert('Erro ao cadastrar. Tente novamente.');
             }
@@ -171,6 +163,55 @@ if (formCadastro) {
             btnSubmit.disabled = false;
         }
     });
-} else {
-    console.error("ERRO CRÍTICO: Formulário 'form-cadastro-cliente' não encontrado no HTML.");
+}
+
+
+/* =============================================
+   ★ LÓGICA DE LOGIN (NOVA PARTE) ★
+   ============================================= */
+if (formLogin) {
+    formLogin.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const emailLogin = document.getElementById('login-email').value;
+        const senhaLogin = document.getElementById('login-senha').value;
+        const btnEntrar = formLogin.querySelector('button');
+        const textoOriginal = btnEntrar.innerText;
+
+        try {
+            btnEntrar.innerText = "Entrando...";
+            btnEntrar.disabled = true;
+
+            const response = await fetch(API_LOGIN_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    email: emailLogin, 
+                    senha: senhaLogin 
+                })
+            });
+
+            if (response.ok) {
+                // SUCESSO!
+                const cliente = await response.json();
+
+                // Salva a sessão
+                localStorage.setItem('usuarioLogado', JSON.stringify(cliente));
+
+                alert(`Bem-vindo de volta, ${cliente.nome}!`);
+                window.location.href = 'paginaPrincipal.html'; // ou paginaPrincipal.html
+
+            } else {
+                // ERRO (401 Unauthorized)
+                alert("E-mail ou senha incorretos.");
+            }
+
+        } catch (error) {
+            console.error("Erro no login:", error);
+            alert("Erro de conexão com o servidor.");
+        } finally {
+            btnEntrar.innerText = textoOriginal;
+            btnEntrar.disabled = false;
+        }
+    });
 }

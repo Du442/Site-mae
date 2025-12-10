@@ -91,6 +91,16 @@
                 transition: all 0.3s ease-in-out;
             }
             
+            .logo-container img {
+                /* Define uma altura fixa que caiba na barra rosa */
+                height: 70px;  /* Se a barra tem 90px, 70px fica bom com margem */
+                width: auto;   /* Mantém a proporção correta (não estica) */
+                
+                /* Garante que ele não saia do lugar */
+                display: block;
+                object-fit: contain;
+            }
+
             .logo-principal img {
                 width: 70px; /* Tamanho inicial */
                 height: auto;
@@ -878,4 +888,244 @@
     justify-content: center;
     text-decoration: none;
     z-index: 2; /* Garante que a lupa fique clicável */
+}
+
+/* --- Estilo do Perfil de Usuário no Menu --- */
+
+.user-profile-container {
+    display: flex;
+    flex-direction: column; /* Empilha: Imagem em cima, Texto embaixo */
+    align-items: center;    /* Centraliza horizontalmente */
+    justify-content: center;
+    text-align: center;
+    margin-top: -5px; /* Ajuste fino para alinhar com os outros ícones */
+}
+
+.user-avatar {
+    width: 40px;  /* Aumentei de 28px para 40px (Maior) */
+    height: 40px;
+    border-radius: 50%; /* Bolinha perfeita */
+    border: 2px solid black; /* Borda branca para destaque */
+    margin-bottom: 2px; /* Espaço entre avatar e texto */
+    object-fit: cover;
+}
+
+.user-name {
+    font-size: 11px; /* Texto bem pequeno */
+    color: black;
+    font-weight: bold;
+    line-height: 1; /* Garante que o texto fique compacto */
+    white-space: nowrap; /* Impede que o nome quebre linha */
+}
+
+/*--------------------------tela de cadastro ------------------------------*/
+/* --- DESIGN DA TELA DE LOGIN/CADASTRO --- */
+
+/* Fundo da página (centraliza o card) */
+.conteudo-auth {
+    background-color: #f4f4f4;
+    min-height: 90vh; /* Ocupa a altura da tela */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* O Card Branco */
+.auth-container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 450px; /* Largura máxima elegante */
+    padding: 40px;
+    border-radius: 16px; /* Bordas bem arredondadas */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra suave e moderna */
+    text-align: center;
+    border-top: 5px solid #d033d1; /* Detalhe da sua marca no topo */
+    animation: animar-entrada 0.8s ease-out forwards;
+}
+
+/* Cabeçalho do Card (Logo e Título) */
+.auth-header img {
+    width: 60px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.auth-header h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Estilo dos Inputs */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9; /* Fundo cinza bem claro */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao clicar no input */
+.input-group input:focus {
+    background-color: #fff;
+    border-color: #d033d1; /* Fica roxo */
+    box-shadow: 0 0 0 4px rgba(208, 51, 209, 0.1); /* Brilho suave */
+    outline: none;
+}
+
+/* Input com erro */
+.input-group input.erro {
+    border-color: #ff4d4d;
+    background-color: #fff5f5;
+}
+
+/* Linha dupla (para telefone/endereço e senhas) */
+.row-dupla {
+    display: flex;
+    gap: 15px;
+}
+.row-dupla .input-group {
+    flex: 1; /* Divide o espaço igualmente */
+}
+
+/* Botão Principal */
+.btn-auth {
+    width: 100%;
+    padding: 14px;
+    background-color: #d033d1;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+}
+
+.btn-auth:hover {
+    background-color: #b52cb6;
+    transform: translateY(-2px); /* Levanta um pouquinho */
+}
+
+.btn-auth:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Rodapé do Card (Links de troca) */
+.auth-footer {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #666;
+}
+
+.auth-footer a {
+    color: #d033d1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade para Celular */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 20px;
+    }
+    .row-dupla {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* --- Menu Dropdown do Usuário (Com Animação) --- */
+
+/* O Container que segura o Avatar + o Menu */
+.dropdown-container {
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* O Menu (A caixinha branca) */
+.dropdown-menu {
+    /* Posicionamento */
+    position: absolute;
+    top: 120%; /* Começa um pouco mais longe para dar espaço pra animação */
+    right: 0;
+    
+    /* Visual */
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 100;
+    padding: 5px 0;
+    border: 1px solid #eee;
+
+    /* ★ AQUI ESTÁ A ANIMAÇÃO ★ */
+    
+    /* 1. Estado Inicial: Invisível */
+    opacity: 0;
+    visibility: hidden; 
+    
+    /* 2. Movimento: Começa 10px mais pra cima (efeito de descida) */
+    transform: translateY(-10px);
+    
+    /* 3. Tempo da animação (suave) */
+    transition: all 0.3s ease-in-out;
+}
+
+/* ★ O GATILHO: Quando passa o mouse no container ★ */
+.dropdown-container:hover .dropdown-menu {
+    /* Torna visível */
+    opacity: 1;
+    visibility: visible;
+    
+    /* Move para a posição final (0) e ajusta o topo */
+    transform: translateY(0);
+    top: 100%; 
+}
+
+/* (O resto continua igual) */
+.dropdown-menu a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    text-align: left;
+    transition: background 0.2s;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f4f4f4;
+    color: #d033d1;
 }

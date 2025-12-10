@@ -2,15 +2,15 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro - Vipstyle Fitness</title>
+    <title>Acesse sua conta - Vipstyle Fitness</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Sans:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Momo+Trust+Sans:wght@200..800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -20,67 +20,90 @@
         </div>
         <nav class="menu-navegacao">
             <ul class="nav-links">
-                <li>
-                    <a href="paginaPrincipal.html" title="Inicio">
-                        <img src="img/icons-vertical-menu/logo home.png" alt="Início" class="nav-icon">
-                    </a>
-                </li>
+                <li><a href="paginaPrincipal.html">Início</a></li>
+                <li><a href="produtos.html">Catálogo</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="conteudo-principal" style="margin-top: 0;">
-        <div class="conteudo-wrapper">
+    <main class="conteudo-auth">
+        
+        <div class="auth-container">
             
-            <div class="cadastro-container">
-                <h2>Crie sua conta</h2>
-                <p>Preencha seus dados para acompanhar seus pedidos.</p>
+            <div class="auth-header">
+                <img src="img/icons-vertical-menu/logo2.png" alt="Vipstyle Fitness">
+                <h2 id="titulo-pagina">Bem-vindo(a)!</h2>
+            </div>
 
+            <div id="box-login">
+                <form id="form-login-cliente">
+                    <div class="input-group">
+                        <label>E-mail</label>
+                        <input type="email" id="login-email" placeholder="exemplo@email.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Senha</label>
+                        <input type="password" id="login-senha" placeholder="Sua senha" required>
+                    </div>
+
+                    <button type="submit" class="btn-auth">ENTRAR</button>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Ainda não tem conta? <a href="#" id="link-ir-para-cadastro">Cadastre-se</a></p>
+                </div>
+            </div>
+
+            <div id="box-cadastro" style="display: none;">
                 <form id="form-cadastro-cliente">
                     
-                    <div class="form-group">
+                    <div class="input-group">
                         <label>Nome Completo</label>
-                        <input type="text" id="cliente-nome" required placeholder="Seu nome">
+                        <input type="text" id="cliente-nome" placeholder="Seu nome completo" required>
                     </div>
 
-                    <div class="form-group">
+                    <div class="input-group">
                         <label>E-mail</label>
-                        <input type="email" id="cliente-email" required placeholder="seu@email.com">
+                        <input type="email" id="cliente-email" placeholder="exemplo@email.com" required>
                     </div>
 
-                    <div class="form-group">
-                        <label>Telefone / WhatsApp</label>
-                        <input type="text" id="cliente-telefone" placeholder="(XX) 9XXXX-XXXX" maxlength="15">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Endereço Completo</label>
-                        <input type="text" id="cliente-endereco" placeholder="Rua, Número, Bairro, Cidade">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Senha</label>
-                        <input type="password" id="cliente-senha" required placeholder="********">
+                    <div class="row-dupla">
+                        <div class="input-group">
+                            <label>Telefone</label>
+                            <input type="text" id="cliente-telefone" placeholder="(00) 00000-0000" required maxlength="15">
+                        </div>
+                        <div class="input-group">
+                            <label>Endereço</label>
+                            <input type="text" id="cliente-endereco" placeholder="Rua, Nº, Bairro">
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Confirmar Senha</label>
-                        <input type="password" id="cliente-senha-confirma" required placeholder="Repita a senha">
-                        
-                        <small id="msg-erro-senha" style="color: red; display: none; margin-top: 5px;">
-                            As senhas não coincidem!
-                        </small>
+                    <div class="row-dupla">
+                        <div class="input-group">
+                            <label>Senha</label>
+                            <input type="password" id="cliente-senha" placeholder="Mínimo 8 caracteres" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Confirmar</label>
+                            <input type="password" id="cliente-senha-confirma" placeholder="Repita a senha" required>
+                        </div>
                     </div>
+                    <small id="msg-erro-senha" style="color: red; display: none; margin-bottom: 10px;">Senhas não conferem</small>
 
-                    <button type="submit" class="btn-cadastrar">Cadastrar</button>
+                    <button type="submit" class="btn-auth">CRIAR CONTA</button>
                 </form>
+
+                <div class="auth-footer">
+                    <p>Já tem uma conta? <a href="#" id="link-ir-para-login">Fazer Login</a></p>
+                </div>
             </div>
 
         </div>
     </main>
 
-    <script src="https://unkpg.com/libphonenumber-js@max/bundle/libphonenumber-max.js"></script>
+    <script src="https://unpkg.com/libphonenumber-js@max/bundle/libphonenumber-max.js"></script>
+    <script src="javascript/cadastro.js"></script> 
 
-    <script src="javascript/cadastro.js"></script>
 </body>
 </html>
