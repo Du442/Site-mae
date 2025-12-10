@@ -23,12 +23,8 @@ public class ProdutoVariante {
     @JsonBackReference
     private Produto produto;
 
-    // Construtor Vazio
     public ProdutoVariante() {
     }
-
-    // --- Getters e Setters ---
-    // (Clique com o botão direito > Source Action > Generate Getters and Setters... para gerar)
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }

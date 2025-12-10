@@ -5,13 +5,12 @@ const formProduto = document.getElementById('form-produto');
 const painelVariantes = document.getElementById('painel-variantes');
 const statusUpload = document.getElementById('status-upload');
 
-// ★ AQUI ESTÁ A MUDANÇA PRINCIPAL: Usamos a Tabela, não a Lista ★
 const tbodyProdutos = document.getElementById('tbody-produtos');
 const inputPesquisa = document.getElementById('input-pesquisa');
 const filtroTipo = document.getElementById('filtro-tipo');
 
-const inputId = document.getElementById('produto-id'); // (Adicionado caso faltasse)
-const btnCancelar = document.getElementById('btn-novo'); // Botão de limpar/novo
+const inputId = document.getElementById('produto-id');
+const btnCancelar = document.getElementById('btn-novo');
 
 // --- Variáveis de Estado ---
 let produtoAtualId = null; 

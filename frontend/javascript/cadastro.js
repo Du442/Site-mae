@@ -199,10 +199,9 @@ if (formLogin) {
                 localStorage.setItem('usuarioLogado', JSON.stringify(cliente));
 
                 alert(`Bem-vindo de volta, ${cliente.nome}!`);
-                window.location.href = 'paginaPrincipal.html'; // ou paginaPrincipal.html
+                window.location.href = 'paginaPrincipal.html';
 
             } else {
-                // ERRO (401 Unauthorized)
                 alert("E-mail ou senha incorretos.");
             }
 

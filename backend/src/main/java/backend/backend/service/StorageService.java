@@ -27,7 +27,6 @@ public class StorageService {
     public String salvarImagem(MultipartFile arquivo) {
         try {
             // 1. Gera um nome de arquivo único (para evitar nomes iguais)
-            // Ex: bermuda.png -> 123e4567-e89b-12d3-a456-426614174000-bermuda.png
             String nomeOriginal = arquivo.getOriginalFilename();
             String nomeUnico = UUID.randomUUID().toString() + "-" + nomeOriginal;
 
@@ -38,7 +37,6 @@ public class StorageService {
             Files.copy(arquivo.getInputStream(), caminhoCompleto);
 
             // 4. Retorna o CAMINHO (URL) que o frontend pode usar
-            // (Ex: "/uploads/123e4567-bermuda.png")
             return "/uploads/" + nomeUnico;
 
         } catch (IOException e) {

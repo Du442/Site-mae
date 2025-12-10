@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     atualizarTela(usuarioAtual);
 
     // ============================================================
-    // ★ NOVO: CONFIGURA O "ENTER" PARA SALVAR ★
+    // CONFIGURA O "ENTER" PARA SALVAR
     // ============================================================
     
     // Seleciona todos os inputs que possuem um ícone de edição ao lado
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// --- RESTO DO CÓDIGO (Igual ao anterior) ---
+// --- RESTO DO CÓDIGO ---
 
 function atualizarTela(cliente) {
     const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(cliente.nome)}&background=random&color=fff&bold=true&size=128`;

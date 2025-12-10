@@ -123,8 +123,6 @@ public class ClienteController {
                     clienteExistente.setNome(novosDados.getNome());
                     clienteExistente.setTelefone(novosDados.getTelefone());
                     clienteExistente.setEndereco(novosDados.getEndereco());
-                    
-                    // (Opcional: Se quiser permitir mudar senha, adicione aqui)
 
                     // 3. Salva no banco
                     Cliente clienteAtualizado = clienteRepository.save(clienteExistente);
@@ -145,12 +143,11 @@ public class ClienteController {
 
         return clienteRepository.findById(id)
             .map(cliente -> {
-                // 1. Verifica se a senha atual bate com a do banco
+
                 if (!cliente.getSenha().equals(senhaAtual)) {
                     return ResponseEntity.status(401).body("A senha atual está incorreta.");
                 }
 
-                // 2. Atualiza para a nova senha
                 cliente.setSenha(novaSenha);
                 clienteRepository.save(cliente);
 
@@ -159,7 +156,7 @@ public class ClienteController {
             .orElse(ResponseEntity.notFound().build());
     }
 
-    // 6. EXCLUIR CONTA (Para a Zona de Perigo)
+
     @DeleteMapping("/excluir/{id}")
     public ResponseEntity<?> excluirConta(@PathVariable Integer id) {
         if (!clienteRepository.existsById(id)) {

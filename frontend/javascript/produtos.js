@@ -147,14 +147,13 @@ if (searchBtn) {
         }
     });
 
-    // (Opcional) Fechar se clicar fora
     document.addEventListener('click', (e) => {
         if (!searchBox.contains(e.target)) {
             searchBox.classList.remove('active');
         }
     });
     
-    // (Opcional) Ir para a página de busca ao apertar Enter
+
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             // Redireciona para a página de produtos com o termo de busca

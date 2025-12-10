@@ -4,7 +4,6 @@
 const API_URL = 'http://localhost:8080/api/produtos';
 
 // Wrappers dos Carrosséis
-// ★ MUDANÇA: Removemos o wrapperColecoes, pois não vamos mexer nele ★
 const wrapperDestaques = document.querySelector('.destaques-carousel .swiper-wrapper');
 
 // Elementos de Interface
@@ -36,7 +35,6 @@ async function carregarProdutos() {
             const capa = produto.variantes[0]; 
             const coresHtml = gerarBolinhasDeCor(produto.variantes);
 
-            // ★ MUDANÇA: Se a categoria for 'colecao', a gente IGNORA aqui no JS
             // porque elas já estão fixas no HTML.
             if (produto.categoria === 'colecao') {
                 return; // Pula este item
@@ -155,14 +153,14 @@ if (searchBtn) {
         }
     });
 
-    // (Opcional) Fechar se clicar fora
+    // Fechar se clicar fora
     document.addEventListener('click', (e) => {
         if (!searchBox.contains(e.target)) {
             searchBox.classList.remove('active');
         }
     });
     
-    // (Opcional) Ir para a página de busca ao apertar Enter
+    //  Ir para a página de busca ao apertar Enter
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             const termo = searchInput.value.trim();
@@ -197,7 +195,6 @@ function verificarLogin() {
             // Remove o href para não clicar e ir para lugar nenhum (o hover fará o trabalho)
             linkCadastro.href = "javascript:void(0)"; 
             
-            // ★ AQUI MUDA: Criamos a estrutura do Dropdown ★
             linkCadastro.innerHTML = `
                 <div class="dropdown-container">
                     <div class="user-profile-container">
@@ -216,7 +213,6 @@ function verificarLogin() {
             `;
             
             // 3. Adiciona a lógica de Logout APENAS no botão "Sair" do menu
-            // (Precisamos usar setTimeout para garantir que o HTML foi criado antes de buscar o ID)
             setTimeout(() => {
                 const btnLogout = document.getElementById('btn-logout-menu');
                 if (btnLogout) {

@@ -61,7 +61,6 @@ public class ProdutoController {
     }
 
     // --- BUSCA POR NOME ---
-    // Ex: GET /api/produtos/buscar?termo=legging
     @GetMapping("/buscar")
     public List<Produto> buscarProdutos(@RequestParam("termo") String termo) {
         return produtoRepository.findByNomeContainingIgnoreCase(termo);
@@ -111,7 +110,6 @@ public class ProdutoController {
     // =================================================================
 
     // ADICIONAR VARIANTE A UM PRODUTO ESPECÍFICO
-    // Ex: POST /api/produtos/1/variantes (Adiciona uma variação ao produto ID 1)
     @PostMapping("/{idProduto}/variantes")
     public ResponseEntity<ProdutoVariante> adicionarVariante(@PathVariable Integer idProduto, @RequestBody ProdutoVariante variante) {
         return produtoRepository.findById(idProduto)
