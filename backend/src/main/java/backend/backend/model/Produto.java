@@ -16,6 +16,8 @@ public class Produto {
     private String descricao;
     private String tipo;
     private String categoria;
+    private Double mediaAvaliacoes = 0.0;
+    private Integer totalAvaliacoes = 0;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
@@ -70,5 +72,21 @@ public class Produto {
     public void setVariantes(List<ProdutoVariante> variantes) {
         this.variantes = variantes;
     }
+
+    public Double getMediaAvaliacoes() {
+        return mediaAvaliacoes == null ? 0.0 : mediaAvaliacoes;
+    }
+    public void setMediaAvaliacoes(Double mediaAvaliacoes) {
+        this.mediaAvaliacoes = mediaAvaliacoes;
+    }
+
+    public Integer getTotalAvaliacoes() {
+        return totalAvaliacoes == null ? 0 : totalAvaliacoes;
+    }
+    public void setTotalAvaliacoes(Integer totalAvaliacoes) {
+        this.totalAvaliacoes = totalAvaliacoes;
+    }
+
+
 
 }

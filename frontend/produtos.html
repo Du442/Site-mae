@@ -6,7 +6,7 @@
     
     <link rel="stylesheet" href="css/style.css"/>
     
-    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Momo+Trust+Sans:wght@200..800&display=swap" rel="stylesheet">
@@ -19,8 +19,9 @@
     <nav class="menu-vertical" id="menu-vertical">
         <ul>
             <li><a href="paginaPrincipal.html">Início</a></li>
-            <li><a href="produtos.html">Catálogo</a></li> <li><a href="#">Coleções</a></li>
-            <li><a href="#">Entrar em contato</a></li>
+            <li><a href="produtos.html">Catálogo</a></li> 
+            <li><a href="colecoes.html">Coleções</a></li>
+            <li><a href="contato.html">Entrar em contato</a></li>
         </ul> 
     </nav>
 
@@ -39,7 +40,6 @@
                 <li class="search-item">
                     <div class="search-box">
                         <input type="text" class="search-input" placeholder="Buscar...">
-                        
                         <a href="#" class="search-btn" title="Pesquisar">
                             <img src="img/icons-vertical-menu/logo-lupa3.png" alt="Pesquisar" class="nav-icon">
                         </a>
@@ -63,33 +63,69 @@
 
 
     <main class="conteudo-principal" id="conteudo-principal">
-        <div class="conteudo-wrapper" style="padding: 40px 20px;">
+        
+        <div class="catalogo-container">
             
-            <h1 style="text-align: center; margin-bottom: 30px; color: #333;">Todos os Produtos</h1>
+            <aside class="barra-lateral">
+                <div class="filtro-box">
+                    
+                    <button class="btn-abre-filtro" id="btn-abre-filtro">
+                        <span>Filtrar por Peça</span>
+                        <span class="seta-filtro">▼</span>
+                    </button>
+                    
+                    <div class="lista-filtros" id="lista-filtros">
+                        
+                        <label class="item-filtro">
+                            <input type="checkbox" value="shorts" class="filtro-check">
+                            <span>Shorts</span>
+                        </label>
 
-            <div id="grade-produtos" class="grid-produtos">
-                </div>
-            
-            <div id="paginacao-container" class="paginacao"></div>
+                        <label class="item-filtro">
+                            <input type="checkbox" value="legging" class="filtro-check">
+                            <span>Leggings</span>
+                        </label>
 
-        </div> 
+                        <label class="item-filtro">
+                            <input type="checkbox" value="top" class="filtro-check">
+                            <span>Tops</span>
+                        </label>
+
+                        <label class="item-filtro">
+                            <input type="checkbox" value="conjunto" class="filtro-check">
+                            <span>Conjuntos</span>
+                        </label>
+                        
+                        <label class="item-filtro">
+                            <input type="checkbox" value="camiseta" class="filtro-check">
+                            <span>Camisetas</span>
+                        </label>
+
+                        <label class="item-filtro">
+                            <input type="checkbox" value="acessorio" class="filtro-check">
+                            <span>Acessórios</span>
+                        </label>
+
+                    </div> </div>
+            </aside>
+    
+            <section class="area-produtos">
+                <h1 style="margin-bottom: 20px; color: #333;">Catálogo Completo</h1>
+                
+                <div id="grade-produtos" class="grade-produtos">
+                    </div>
+    
+                <div id="paginacao-container" class="paginacao-container"></div>
+            </section>
+    
+        </div>
+    
     </main>
-
-
     <footer class="rodape-site">
          <div class="rodape-container">
+            <div class="rodape-copyright">
+                <p>&copy; 2025 Vipstyle Fitness. Todos os direitos reservados.</p>
             </div>
-         <div class="rodape-copyright">
-            <div class="rodape-pagamento2">
-                <div class="pagamento-icones">
-                    <img src="#" alt="Visa">
-                    <img src="#" alt="MasterCard">
-                    <img src="#" alt="Elo">
-                    <img src="#" alt="Pix">
-                    <img src="#" alt="Boleto">
-                </div>
-            </div>
-            <p>&copy; 2025 Vipstyle Fitness. Todos os direitos reservados.</p>
          </div>
     </footer>
 

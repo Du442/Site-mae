@@ -60,7 +60,7 @@ function criarSlideDestaque(produto, capa, coresHtml) {
     return `
     <div class="swiper-slide">
         <div class="card-produto">
-            <a href="#">
+            <a href="detalhes.html?id=${produto.id}">
                 <img src="${capa.urlImagem}" alt="${produto.nome}">
                 <div class="card-produto-info">
                     <h3>${produto.nome}</h3>
@@ -129,8 +129,6 @@ const swiperDestaques = new Swiper('.destaques-carousel', {
     }
 });
 
-// Inicia o carregamento (Só vai preencher os destaques)
-carregarProdutos();
 
 /* =============================================
    BARRA DE PESQUISA EXPANSÍVEL
@@ -243,3 +241,8 @@ function fazerLogout() {
 
 // Executa ao carregar a página
 verificarLogin();
+
+carregarProdutos();
+
+
+

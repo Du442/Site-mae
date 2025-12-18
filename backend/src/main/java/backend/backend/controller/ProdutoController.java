@@ -1,7 +1,9 @@
 package backend.backend.controller;
 
+import backend.backend.model.Avaliacao;
 import backend.backend.model.Produto;
 import backend.backend.model.ProdutoVariante;
+import backend.backend.repository.AvaliacaoRepository;
 import backend.backend.repository.ProdutoRepository;
 import backend.backend.repository.ProdutoVarianteRepository;
 import backend.backend.service.StorageService;
@@ -64,6 +66,21 @@ public class ProdutoController {
     @GetMapping("/buscar")
     public List<Produto> buscarProdutos(@RequestParam("termo") String termo) {
         return produtoRepository.findByNomeContainingIgnoreCase(termo);
+    }
+
+    // --- BUSCA AVANÇADA (Texto + Categorias) ---
+    // URL de exemplo: /api/produtos/filtrar?termo=legging&categorias=verao,inverno
+    @GetMapping("/filtrar")
+    public List<Produto> filtrarProdutos(
+            @RequestParam(value = "termo", required = false) String termo,
+            @RequestParam(value = "categorias", required = false) List<String> categorias) {
+        
+        // Pequena validação: Se a lista de categorias vier vazia, passamos null para a query funcionar
+        if (categorias != null && categorias.isEmpty()) {
+            categorias = null;
+        }
+        
+        return produtoRepository.buscarComFiltros(termo, categorias);
     }
 
     // CRIAR PRODUTO (Cria apenas o "Pai" - Nome, Descrição, Tipo)
@@ -133,5 +150,44 @@ public class ProdutoController {
                 produtoVarianteRepository.delete(variante);
                 return ResponseEntity.ok().build();
             }).orElse(ResponseEntity.notFound().build());
+    }
+
+    //PARA RECEBER A AVALIAÇÃO
+    @RestController
+    @RequestMapping("/api/avaliacoes")
+    public class AvaliacaoController {
+
+        @Autowired
+        private AvaliacaoRepository avaliacaoRepository;
+
+        @Autowired
+        private ProdutoRepository produtoRepository;
+
+        @PostMapping("/{idProduto}")
+        public ResponseEntity<?> adicionarAvaliacao(@PathVariable Integer idProduto, @RequestBody Avaliacao novaAvaliacao) {
+            
+            // 1. Acha o produto
+            Produto produto = produtoRepository.findById(idProduto).orElse(null);
+            if (produto == null) return ResponseEntity.notFound().build();
+
+            // 2. Salva a avaliação
+            novaAvaliacao.setProduto(produto);
+            avaliacaoRepository.save(novaAvaliacao);
+
+            // 3. MATEMÁTICA: Recalcula a média
+            // Nova Média = ((Média Atual * Total Atual) + Nova Nota) / (Total Atual + 1)
+            double mediaAtual = produto.getMediaAvaliacoes();
+            int totalAtual = produto.getTotalAvaliacoes();
+            
+            double novaMedia = ((mediaAtual * totalAtual) + novaAvaliacao.getNota()) / (totalAtual + 1);
+            
+            // 4. Atualiza o produto com os novos dados
+            produto.setMediaAvaliacoes(novaMedia);
+            produto.setTotalAvaliacoes(totalAtual + 1);
+            
+            produtoRepository.save(produto);
+
+            return ResponseEntity.ok().body("Avaliação salva e média atualizada para: " + novaMedia);
+        }
     }
 }

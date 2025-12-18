@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Detalhes do Produto - Vipstyle Fitness</title>
+    <link rel="stylesheet" href="css/detalhes.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+<body>
+
+        <div class="menu-overlay" id="menu-overlay"></div>
+    <button class="btn-menu-toggle" id="btn-menu-toggle"><span class="linha"></span><span class="linha"></span><span class="linha"></span></button>
+    
+    <nav class="menu-vertical" id="menu-vertical">
+        <ul>
+            <li><a href="paginaPrincipal.html">Início</a></li>
+            <li><a href="produtos.html">Catálogo</a></li> 
+            <li><a href="colecoes.html">Coleções</a></li>
+            <li><a href="contato.html">Entrar em contato</a></li>
+        </ul> 
+    </nav>
+
+    <header class="cabecalho-principal" id="cabecalho-principal">
+        <div class="logo-container">
+            <a href="paginaPrincipal.html" class="logo-principal"><img src="img/icons-vertical-menu/logo2.png" alt="Logo marca"></a>
+        </div>
+        <nav class="menu-navegacao">
+            <ul class="nav-links">
+                <li>
+                    <a href="paginaPrincipal.html" title="Início">
+                        <img src="img/icons-vertical-menu/logo home.png" alt="Início" class="nav-icon">
+                    </a>
+                </li>
+
+                <li class="search-item">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Buscar...">
+                        <a href="#" class="search-btn" title="Pesquisar">
+                            <img src="img/icons-vertical-menu/logo-lupa3.png" alt="Pesquisar" class="nav-icon">
+                        </a>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="telaCadastro.html" title="Cadastro">
+                        <img src="img/icons-vertical-menu/logo-cadastro2.png" alt="Cadastro" class="nav-icon">
+                    </a>
+                </li>
+
+                <li>
+                    <a href="telaCarrinho.html" title="Carrinho">
+                        <img src="img/icons-vertical-menu/logo-carrinho2.png" alt="Carrinho" class="nav-icon">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo-produto animar-elemento delay-3">
+        <div class="produto-wrapper">
+            
+            <div class="coluna-imagem">
+                <div class="imagem-principal-container">
+                    <img id="img-principal" src="" alt="Imagem do Produto">
+                </div>
+            </div>
+
+            <div class="coluna-info">
+                <h1 id="produto-nome">Carregando...</h1>
+                <p class="produto-ref" id="produto-categoria">Categoria</p>
+                
+                <div class="preco-box">
+                    <span class="moeda">R$</span>
+                    <span id="produto-preco">0,00</span>
+                </div>
+
+                <div class="descricao-box">
+                    <h3>Descrição</h3>
+                    <p id="produto-descricao">...</p>
+                </div>
+
+                <button class="btn-comprar">ADICIONAR AO CARRINHO</button>
+            </div>
+        </div>
+
+        <section class="secao-avaliacoes">
+            <h2>Avaliações</h2>
+            
+            <div class="form-avaliacao">
+                <h3>Deixe sua avaliação</h3>
+                <div class="estrelas-input" id="estrelas-input">
+                    <span data-value="1">★</span>
+                    <span data-value="2">★</span>
+                    <span data-value="3">★</span>
+                    <span data-value="4">★</span>
+                    <span data-value="5">★</span>
+                </div>
+                <textarea id="texto-avaliacao" placeholder="O que você achou do produto?"></textarea>
+                <button onclick="enviarAvaliacao()" class="btn-enviar-review">Enviar Avaliação</button>
+            </div>
+
+            <div id="lista-avaliacoes" class="lista-reviews">
+                <p>Seja o primeiro a avaliar!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="rodape-site">
+         <div class="rodape-container">
+            <div class="rodape-copyright">
+                <p>&copy; 2025 Vipstyle Fitness. Todos os direitos reservados.</p>
+            </div>
+         </div>
+    </footer>
+
+    <script src="javascript/detalhes.js"></script>
+    <script src="javascript/main.js"></script>
+</body>
+</html>
